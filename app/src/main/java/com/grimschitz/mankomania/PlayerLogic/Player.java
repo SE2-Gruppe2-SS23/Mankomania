@@ -1,6 +1,7 @@
 package com.grimschitz.mankomania.PlayerLogic;
 
 import com.grimschitz.mankomania.FieldLogic.Field;
+import com.grimschitz.mankomania.ShareLogic.Share;
 
 import java.util.HashMap;
 
