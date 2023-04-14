@@ -42,6 +42,4 @@ public class FieldTest {
     @Test
     public void testPreviousField(){assertEquals(fourth,first.getPreviousField());}
 
-    
-
 }
