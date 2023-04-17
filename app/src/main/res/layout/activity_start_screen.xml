@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Screens.StartScreen">
 
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START"
+        tools:layout_editor_absoluteX="265dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EXIT"
+        tools:layout_editor_absoluteX="399dp"
+        tools:layout_editor_absoluteY="184dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

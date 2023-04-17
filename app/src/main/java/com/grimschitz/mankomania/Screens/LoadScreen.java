@@ -12,10 +12,17 @@ public class LoadScreen extends AppCompatActivity {
 
 
     public LoadScreen(AppCompatActivity nextScreen){
+        //super.onCreate(savedInstanceState);
         Handler handler = new Handler();
         setContentView(R.layout.activity_load_screen);
         handler.postDelayed(() -> createActivity(nextScreen), 5000);
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_load_screen);
     }
 
     public void createActivity(AppCompatActivity nextActivity){
