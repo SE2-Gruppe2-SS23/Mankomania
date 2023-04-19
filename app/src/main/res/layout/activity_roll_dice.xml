@@ -4,30 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".RollDiceActivity"
+    android:background="@drawable/backgroundboard">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="163dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:srcCompat="@drawable/dice1" />
 
-    <Button
-        android:id="@+id/rollButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Roll"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="163dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="140dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
+        app:srcCompat="@drawable/dice1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
