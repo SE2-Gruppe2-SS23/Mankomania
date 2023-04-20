@@ -154,7 +154,7 @@ public class RollDiceActivity extends AppCompatActivity implements SensorEventLi
             }
         }
     }
-    
+
 
 
     @Override

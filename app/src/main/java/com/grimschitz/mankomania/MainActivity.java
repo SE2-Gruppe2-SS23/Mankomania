@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button rollButton;
+    private Button rollButton,slotsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +17,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rollButton = findViewById(R.id.rollButton);
+        slotsButton = findViewById(R.id.slotsButton);
+
+        slotsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,SlotsActivity.class);
+                startActivity(intent);
+            }
+        });
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
