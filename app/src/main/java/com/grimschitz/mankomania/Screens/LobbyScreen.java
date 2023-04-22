@@ -13,22 +13,25 @@ import com.grimschitz.mankomania.R;
 
 
 public class LobbyScreen extends AppCompatActivity {
-    private TextView p1 = findViewById(R.id.txt_Player1);
-    private TextView p2 = findViewById(R.id.txt_Player2);
-    private TextView p3 = findViewById(R.id.txt_Player3);
-    private TextView p4 = findViewById(R.id.txt_Player4);
+    private TextView p1,p2,p3,p4;
+    private Button btn_Back;
 
 
-    public LobbyScreen(){
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby_screen);
-        Button btn_Back = findViewById(R.id.btn_Back);
+        p1 = findViewById(R.id.txt_Player1);
+        p2 = findViewById(R.id.txt_Player2);
+        p3 = findViewById(R.id.txt_Player3);
+        p4 = findViewById(R.id.txt_Player4);
+        btn_Back = findViewById(R.id.btn_Back);
         btn_Back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {createActivity(new LoadScreen(new StartScreen()));}
+            public void onClick(View view) {finish();}
         });
-        initConnection();
+        //initConnection();
     }
-
 
     public void initConnection(){
         //TODO: add connection to server logic
@@ -56,8 +59,8 @@ public class LobbyScreen extends AppCompatActivity {
         }
     }
 
-    public void createActivity(AppCompatActivity nextActivity){
-        Intent nextScreen = new Intent(this,nextActivity.getClass());
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
         this.startActivity(nextScreen);
     }
 }

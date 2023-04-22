@@ -6,27 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.grimschitz.mankomania.GlobalAssets;
+import com.grimschitz.mankomania.Launchers.Launcher;
 import com.grimschitz.mankomania.R;
 
 public class LoadScreen extends AppCompatActivity {
-
-
-    public LoadScreen(AppCompatActivity nextScreen){
-        //super.onCreate(savedInstanceState);
-        Handler handler = new Handler();
-        setContentView(R.layout.activity_load_screen);
-        handler.postDelayed(() -> createActivity(nextScreen), 5000);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load_screen);
-    }
+        Handler handler = new Handler();
+        Intent nextScreen = new Intent(this, GlobalAssets.nextScreen);
 
-    public void createActivity(AppCompatActivity nextActivity){
-        Intent nextScreen = new Intent(this,nextActivity.getClass());
-        this.startActivity(nextScreen);
+        handler.postDelayed(() -> this.startActivity(nextScreen), 5000);
+
     }
 }

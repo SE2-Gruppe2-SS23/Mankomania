@@ -7,41 +7,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.grimschitz.mankomania.GlobalAssets;
 import com.grimschitz.mankomania.R;
 
 public class StartScreen extends AppCompatActivity {
-
-    public StartScreen(){
-        setContentView(R.layout.activity_start_screen);
-
-        Button start = findViewById(R.id.btn_start);
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createActivity(new LoadScreen(new LobbyScreen()));
-            }
-        });
-
-        Button exit = findViewById(R.id.btn_exit);
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                System.exit(0);
-            }
-        });
-
-    }
+    private Button start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
 
+        start = findViewById(R.id.btn_start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createActivity(LobbyScreen.class);
+            }
+        });
+
     }
 
 
-    public void createActivity(AppCompatActivity nextActivity){
-        Intent nextScreen = new Intent(this,nextActivity.getClass());
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
         this.startActivity(nextScreen);
     }
 }

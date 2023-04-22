@@ -15,12 +15,6 @@
             android:name=".Screens.LoadScreen"
             android:exported="false" />
         <activity
-            android:name=".Screens.LobbyScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Screens.StartScreen"
-            android:exported="false" />
-        <activity
             android:name=".Launchers.Launcher"
             android:exported="true">
             <intent-filter>
@@ -29,6 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <activity
+            android:name=".Screens.LobbyScreen"
+            android:exported="true" />
+        <activity
+            android:name=".Screens.StartScreen"
+            android:exported="true" />
     </application>
 
 </manifest>
