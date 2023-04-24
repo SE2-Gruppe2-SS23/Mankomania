@@ -40,6 +40,4 @@
             android:name=".Screens.StartScreen"
             android:exported="true" />
     </application>
-
-
 </manifest>
