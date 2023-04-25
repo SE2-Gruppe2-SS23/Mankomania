@@ -1,0 +1,134 @@
+package com.grimschitz.mankomania;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import com.grimschitz.mankomania.BoardScreen.SquareGridView;
+
+import android.util.Log;
+
+public class BoardScreenActivity extends AppCompatActivity {
+
+    private SquareGridView gridView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_board_screen);
+
+        gridView = findViewById(R.id.gridView);
+        gridView.post(new Runnable() {
+              @Override
+              public void run() {
+                  for (int i = 0; i < 30; i++) {
+                      int[] coordinates = gridView.getCellCoordinates(i);
+                      Log.d("Cell " + i + " coordinates:", "x=" + coordinates[0] + ", y=" + coordinates[1]);
+                  }
+              }
+        });
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    /*        GridView gridView;
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_first);
+
+            gridView = findViewById(R.id.gridView);
+            gridView.setAdapter(new GridAdapter(this));
+        }
+
+        private class GridAdapter extends BaseAdapter {
+
+            private Context context;
+
+            public GridAdapter(Context context) {
+                this.context = context;
+            }
+
+            @Override
+            public int getCount() {
+                return 100;
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                ImageView imageView;
+                if (convertView == null) {
+                    imageView = new ImageView(context);
+                    imageView.setLayoutParams(new GridView.LayoutParams(100, 100));
+                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                } else {
+                    imageView = (ImageView) convertView;
+                }
+                imageView.setImageResource(R.drawable.field); // You can use your own drawable for the field
+                return imageView;
+            }
+        }
+    }
+
+
+
+
+
+
+    /*
+    private AppBarConfiguration appBarConfiguration;
+    private ActivityBoardScreenBinding binding;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        binding = ActivityBoardScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbar);
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_board_screen);
+        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_board_screen);
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+}
+
+
+     */
