@@ -35,7 +35,7 @@ public class SquareGridView extends View {
 
     private void init() {
         numColumns = 10;
-        numRows = 10;
+        numRows = 15;
         linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         linePaint.setColor(Color.BLACK);
         linePaint.setStrokeWidth(2);
