@@ -3,7 +3,9 @@ package org.example.mankomania.game;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public enum Game {
     INSTANCE;
@@ -32,18 +34,12 @@ public enum Game {
     public void checkLobby() {
         for (Player player : players) {
             if (player == null) {
+                sendToAll(GameState.LOBBY_WAITING + "#" + Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
                 return;
             }
         }
         ready = true;
-        for (Player player : players) {
-            try {
-                new DataOutputStream(player.socket().getOutputStream()).writeUTF(String.valueOf(GameState.LOBBY_READY));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-//                stop game?
-            }
-        }
+        sendToAll(GameState.LOBBY_READY + "#" + Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
     }
 
     public void disconnect() {
@@ -55,5 +51,15 @@ public enum Game {
     public GameState move() {
         if (!ready) return GameState.LOBBY_WAITING;
         else return null;
+    }
+
+    private void sendToAll(String message) {
+        for (Player player : players) {
+            try {
+                new DataOutputStream(player.socket().getOutputStream()).writeUTF(message);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
