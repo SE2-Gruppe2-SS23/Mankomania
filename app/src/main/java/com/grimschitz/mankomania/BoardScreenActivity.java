@@ -50,13 +50,13 @@ public class BoardScreenActivity extends AppCompatActivity {
         view.invalidate();*/
     }
     public void wurfeln(View view) {
-        int validField[] = {1,2,3,4,5,6,7,8,18,28,38,48,58,68,78,88,98,108,118,128,138,137,136,135,134,133,132,131,121,111,101,91,81,71,61,51,41,31,21,11};
+        int validField[] = {1,2,3,4,5,6,7,8,18,28,38,48,58,68,78,88,98,108,118,128,138,137,136,135,134,133,132,131,130,120,110,100,90,80,70,60,50,40,30,20,10};
         int wurfel = (int)(Math.random() * 6 + 1);
         //view = (View) findViewById(R.id.fragment_Second_Layout).getLayoutParams();
         ImageView image = findViewById(R.id.imageView4);
 
         playerfield = playerfield+wurfel;
-        if(playerfield>39) playerfield=playerfield-40;
+        if(playerfield>40) playerfield=playerfield-41;
         int xy[] = gridView.getCellCoordinates(validField[playerfield]);
 
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0];
