@@ -48,6 +48,7 @@ public class Server {
                         }
                 );
                 writer.writeUTF(GameState.HELLO + "#" + player.name());
+                Game.INSTANCE.checkLobby();
                 while (true) {
                     var input = reader.readUTF();
                     writer.writeUTF(String.valueOf(Game.INSTANCE.move()));
