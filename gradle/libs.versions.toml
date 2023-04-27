@@ -1,0 +1,4 @@
+[versions]
+[libraries]
+vavr = { module = "io.vavr:vavr", version = "1.0.0-alpha-4" }
+[plugins]
