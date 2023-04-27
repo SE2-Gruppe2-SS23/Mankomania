@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.grimschitz.mankomania.client.Client;
 import com.grimschitz.mankomania.R;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 
-public class LobbyScreen extends AppCompatActivity {
+public class LobbyScreen extends AppCompatActivity implements PropertyChangeListener {
     private TextView p1,p2,p3,p4;
     private Button btn_Back;
 
@@ -30,15 +33,16 @@ public class LobbyScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {finish();}
         });
-        //initConnection();
+        initConnection();
     }
 
     public void initConnection(){
         //TODO: add connection to server logic
+        Client.getInstance().start();
+        Client.getInstance().addPropertyChangeListener(this);
     }
 
-    public void update(){
-        String[] players = null; //TODO: getPlayers from connection
+    public void update(String[] players){
 
         p1.setText(players[0]);
 
@@ -62,5 +66,12 @@ public class LobbyScreen extends AppCompatActivity {
     public void createActivity(Class nextActivity){
         Intent nextScreen = new Intent(this,nextActivity);
         this.startActivity(nextScreen);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("playerNames")) {
+            update((String[]) evt.getNewValue());
+        }
     }
 }
