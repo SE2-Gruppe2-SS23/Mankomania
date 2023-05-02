@@ -15,7 +15,11 @@ public class HorseRace {
      }
 
      public void setTrackForPlayer(Player p, Track track){
+<<<<<<< HEAD
          tracks.put(p,new RaceTrack(track,track.prizeMultiplier,track.winMultiplier));
+=======
+         tracks.put(p,new RaceTrack(track.prizeMultiplier,track.winMultiplier));
+>>>>>>> 195b4de (create branch HorseRace logic, and basic implementation of horse race, race tracks and track types)
      }
 
      public void placeBetForPlayer(Player p, int amount){
@@ -23,4 +27,8 @@ public class HorseRace {
      }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 195b4de (create branch HorseRace logic, and basic implementation of horse race, race tracks and track types)
 }
