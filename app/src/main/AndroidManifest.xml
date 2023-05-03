@@ -31,7 +31,7 @@
     </application>
 
             <activity
-                android:name="com.grimschitz.mankomania.BoardScreenActivity"
+                android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
                 android:label="@string/title_activity_board_screen"
                 android:theme="@style/Theme.Mankomania.NoActionBar"
                 android:exported="true">
