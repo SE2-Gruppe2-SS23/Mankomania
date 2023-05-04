@@ -27,8 +27,5 @@ public class HorseRace {
      }
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 08f9e61 (create branch HorseRace logic, and basic implementation of horse race, race tracks and track types)
 }
