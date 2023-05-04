@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-feature
-        android:name="android.hardware.sensor.accelerometer"
-        android:required="true" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,34 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
-
-
-        <activity
-            android:name=".Screens.LoadScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Screens.LobbyScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Screens.StartScreen"
-            android:exported="false" />
-
-
-
-        <activity
-            android:name=".ToolsLogic.RouletteWheelView"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.RouletteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.SlotsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.RollDiceActivity"
-            android:exported="false" />
-
-
             <activity
                 android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
                 android:label="@string/title_activity_board_screen"
@@ -57,6 +25,3 @@
     </application>
 
 </manifest>
-
-
-
