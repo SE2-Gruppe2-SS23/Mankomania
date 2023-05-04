@@ -7,7 +7,7 @@ public class BoardFields {
     private BoardFields() {}
 
     public Field[] getFields(){
-        fields = initFields();
+        initFields();
         connectFields(fields);
         return fields;
     }
