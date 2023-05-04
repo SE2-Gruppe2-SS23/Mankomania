@@ -2,11 +2,13 @@ package com.grimschitz.mankomania.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.grimschitz.mankomania.HorseRaceLogic.HorseRace;
+import com.grimschitz.mankomania.HorseRaceLogic.Track;
 import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.R;
 
@@ -33,6 +35,18 @@ public class HorseRaceScreen extends AppCompatActivity {
         setMovementFields();
     }
 
+    public int getDestinationField(Track track){
+        return 0;
+    }
+    public void moveIcon(ImageView icon, int field){
+        icon.setRight(movementFields.get(field).getRight());
+    }
+    public void setPlayerIcon(Player p, ImageView icon){
+        playerIcons.put(p,icon);
+    }
+    public ImageView getPlayerIcon(Player p){
+        return playerIcons.get(p);
+    }
     public void setMovementFields(){
         movementFields.add(findViewById(R.id.field1));
         movementFields.add(findViewById(R.id.field2));
