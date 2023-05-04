@@ -2,6 +2,7 @@ package com.grimschitz.mankomania.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD
 import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -21,10 +22,19 @@ public class HorseRaceScreen extends AppCompatActivity {
     public TextView goalView;
     public ArrayList<TextView> movementFields;
     public HorseRace raceInstance;
+=======
+import android.os.Bundle;
+
+import com.grimschitz.mankomania.R;
+
+public class HorseRaceScreen extends AppCompatActivity {
+
+>>>>>>> 5170a1b (set background for horse race screen and starting position of player horses)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horse_race_screen);
+<<<<<<< HEAD
         playerIcons = new HashMap<>();
         p1 = findViewById(R.id.imgPlayer1);
         p2 = findViewById(R.id.imgPlayer2);
@@ -59,5 +69,7 @@ public class HorseRaceScreen extends AppCompatActivity {
     }
     public boolean isWinner(ImageView playerIcon){
         return playerIcon.getRight() > goalView.getLeft();
+=======
+>>>>>>> 5170a1b (set background for horse race screen and starting position of player horses)
     }
 }
