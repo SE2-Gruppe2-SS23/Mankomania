@@ -15,7 +15,6 @@ public class Board {
 
     public Board(){
         players = new ArrayList<>();
-
     }
 
 
