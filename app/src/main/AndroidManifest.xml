@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
         <activity
-            android:name=".HorseRaceScreen"
+            android:name=".Screens.HorseRaceScreen"
             android:exported="false" />
         <activity
             android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
