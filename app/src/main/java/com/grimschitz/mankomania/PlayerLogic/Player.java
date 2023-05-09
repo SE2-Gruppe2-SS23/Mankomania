@@ -60,4 +60,15 @@ public class Player {
 
     //-------------------------------------
 
+    public void moveForward(boolean moveToOptional) {
+        Field nextField;
+        if (moveToOptional && currentPosition.getOptionalNextField() != null) {
+            nextField = currentPosition.getOptionalNextField();
+        } else {
+            nextField = currentPosition.getNextField();
+        }
+
+        currentPosition = nextField;
+
+    }
 }
