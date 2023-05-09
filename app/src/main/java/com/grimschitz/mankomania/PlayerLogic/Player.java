@@ -3,6 +3,7 @@ package com.grimschitz.mankomania.PlayerLogic;
 import com.grimschitz.mankomania.FieldLogic.Field;
 import com.grimschitz.mankomania.ShareLogic.Share;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 
 public class Player {
@@ -22,6 +23,8 @@ public class Player {
     public Player(Field initialField, int playerIndex, String playerSocket){
         money = 1000000;
         shares = new HashMap<Share,Integer>();
+        SecureRandom secRand = new SecureRandom();
+        setInitialRandomShares(secRand.nextInt(3 - 1) + 1);
         this.playerIndex = playerIndex;
         currentPosition = initialField;
         this.playerSocket = playerSocket;
@@ -70,5 +73,28 @@ public class Player {
 
         currentPosition = nextField;
 
+    }
+
+    public void setInitialRandomShares(int shareIndex) {
+        switch (shareIndex) {
+            case 1:
+                shares.put(Share.DRY_OIL_PLC, 0);
+                shares.put(Share.SHORT_CIRCUIT_PLC, 0);
+                break;
+
+            case 2:
+                shares.put(Share.DRY_OIL_PLC, 0);
+                shares.put(Share.HARD_STEEL_PLC, 0);
+                break;
+
+            case 3:
+                shares.put(Share.HARD_STEEL_PLC, 0);
+                shares.put(Share.SHORT_CIRCUIT_PLC, 0);
+                break;
+
+            default:
+                break;
+
+        }
     }
 }
