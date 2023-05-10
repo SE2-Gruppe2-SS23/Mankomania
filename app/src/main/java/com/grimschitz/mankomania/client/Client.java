@@ -8,6 +8,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Client extends Thread {
 
@@ -22,7 +24,19 @@ public class Client extends Thread {
 
     private String[] playerNames = new String[4];
 
-    private PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private GameData gameData;
+
+    public GameData getGameData() {
+        return gameData;
+    }
+
+    private final List<GameData> history = new ArrayList<>();
+
+    public List<GameData> getHistory() {
+        return history;
+    }
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         support.addPropertyChangeListener(pcl);
@@ -35,7 +49,14 @@ public class Client extends Thread {
     public void setPlayerNames(String[] playerNames) {
         String[] oldPlayerNames = this.playerNames;
         this.playerNames = playerNames;
-        support.firePropertyChange("playerNames", oldPlayerNames, playerNames);
+        support.firePropertyChange(PropertyName.PLAYER_NAMES.name(), oldPlayerNames, playerNames);
+    }
+
+    public void setGameData(GameData gameData) {
+        GameData oldGameData = this.gameData;
+        this.gameData = gameData;
+        history.add(gameData);
+        support.firePropertyChange(PropertyName.GAME_DATA.name(), oldGameData, gameData);
     }
 
     public Client() {}
@@ -65,11 +86,14 @@ public class Client extends Thread {
                         setPlayerNames(parsePlayerNames(input));
                         break;
                     case GAME_MOVE:
+                        setGameData(parseGameData(input));
                         break;
                     case GAME_WAIT:
                         break;
                     case GAME_END:
                         break;
+                    default:
+                        setGameData(parseGameData(input));
                 }
             }
         } catch (Exception e) {
@@ -87,5 +111,9 @@ public class Client extends Thread {
 
     private String[] parsePlayerNames(String input) {
         return input.substring(input.indexOf("#") + 1).split(",");
+    }
+
+    private GameData parseGameData(String input) {
+        return new GameData(GameState.valueOf(input.substring(0, input.indexOf("#"))), input.substring(input.indexOf("#") + 1).split("#"));
     }
 }
