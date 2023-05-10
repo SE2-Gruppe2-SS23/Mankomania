@@ -26,11 +26,7 @@
         <activity
             android:name=".Screens.StartScreen"
             android:exported="false" />
-        <activity
-            android:name=".Launchers.Launcher"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
 
         <activity
@@ -45,7 +41,7 @@
         <activity
             android:name=".ToolsLogic.RollDiceActivity"
             android:exported="false" />
-    </application>
+
 
             <activity
                 android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
