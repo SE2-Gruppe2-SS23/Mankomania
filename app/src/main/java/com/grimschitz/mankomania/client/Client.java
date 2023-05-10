@@ -6,6 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class Client extends Thread {
@@ -74,6 +75,10 @@ public class Client extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void send(GameState gameState, String... data) throws IOException {
+        writer.writeUTF(gameState.name() + "#" + String.join("#", data));
     }
 
     public String[] getPlayerNames() {

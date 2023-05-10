@@ -47,15 +47,20 @@ public class Server {
                             }
                         }
                 );
-                writer.writeUTF(GameState.HELLO + "#" + player.name());
+                send(writer, GameState.HELLO, player.name());
                 Game.INSTANCE.checkLobby();
                 while (true) {
                     var input = reader.readUTF();
-                    writer.writeUTF(String.valueOf(Game.INSTANCE.move()));
+                    var response = Game.INSTANCE.move(player, input);
+                    send(writer, response.gameState(), response.data());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        private void send(DataOutputStream writer, GameState gameState, String... data) throws IOException {
+            writer.writeUTF(gameState + "#" + String.join("#", data));
         }
     }
 }
