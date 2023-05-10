@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button rollButton,slotsButton;
+    private Button rollButton,slotsButton,rouletteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         rollButton = findViewById(R.id.rollButton);
         slotsButton = findViewById(R.id.slotsButton);
+        rouletteButton = findViewById(R.id.rouletteButton);
 
         slotsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,RollDiceActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        rouletteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,RouletteActivity.class);
                 startActivity(intent);
             }
         });
