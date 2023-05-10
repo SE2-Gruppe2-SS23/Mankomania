@@ -42,6 +42,16 @@ public enum Game {
         sendToAll(GameState.LOBBY_READY + "#" + Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
     }
 
+    private void checkWin() {
+        for (Player player : players) {
+            if (player.money() == 0) {
+                sendToAll(GameState.GAME_END, player.name());
+//                TODO: can multiple players win?
+                return;
+            }
+        }
+    }
+
     public void disconnect() {
     }
 
