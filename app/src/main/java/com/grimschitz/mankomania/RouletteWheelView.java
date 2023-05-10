@@ -79,7 +79,7 @@ public class RouletteWheelView extends View {
             float textY = centerY + (float) ((radius * 0.85) * Math.sin(angleInRadians) + (paint.getTextSize() / 2));
 
             canvas.drawText(numberText, textX, textY, paint);
-            
+
             startAngle += sweepAngle;
         }
 
