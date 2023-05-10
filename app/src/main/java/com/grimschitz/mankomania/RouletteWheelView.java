@@ -1,8 +1,7 @@
 package com.grimschitz.mankomania;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -52,7 +51,7 @@ public class RouletteWheelView extends View {
         for (int i = 0; i < 37; i++) {
             paint.setStyle(Paint.Style.FILL);
             if (i == 0) {
-                paint.setColor(Color.GREEN);
+                paint.setColor(Color.parseColor("#008000"));
             } else if (i % 2 == 0) {
                 paint.setColor(Color.RED);
             } else {
@@ -62,7 +61,7 @@ public class RouletteWheelView extends View {
             rectF.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
             canvas.drawArc(rectF, startAngle, sweepAngle, true, paint);
 
-            paint.setColor(Color.WHITE);
+            paint.setColor(Color.DKGRAY);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(2);
             canvas.drawArc(rectF, startAngle, sweepAngle, true, paint);
@@ -78,26 +77,14 @@ public class RouletteWheelView extends View {
             float textX = centerX + (float) ((radius * 0.85) * Math.cos(angleInRadians) - (textWidth / 2));
             float textY = centerY + (float) ((radius * 0.85) * Math.sin(angleInRadians) + (paint.getTextSize() / 2));
 
+            paint.setColor(Color.WHITE);
             canvas.drawText(numberText, textX, textY, paint);
 
             startAngle += sweepAngle;
         }
 
-        if (result >= 0) {
-            String resultText = String.valueOf(result);
-            float textWidth = paint.measureText(resultText);
-
-        }
     }
 
-    public void setResult(int result) {
-        this.result = result;
-        invalidate();
-    }
-
-    public int getResult() {
-        return result;
-    }
 
     public void spin(int result){
         setRotation(0);
