@@ -13,6 +13,8 @@ public enum Game {
     private final Player[] players = new Player[4];
     private Boolean ready = false;
 
+    private Player currentPlayer;
+
     Game() {
 //        init
     }
@@ -39,7 +41,8 @@ public enum Game {
             }
         }
         ready = true;
-        sendToAll(GameState.LOBBY_READY + "#" + Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
+        currentPlayer = players[0];
+        sendToAll(GameState.LOBBY_READY, Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
     }
 
     private void checkWin() {
@@ -52,6 +55,10 @@ public enum Game {
         }
     }
 
+    private void endTurn() {
+        currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
+    }
+
     public void disconnect() {
     }
 
@@ -60,6 +67,8 @@ public enum Game {
 
     public Response move(Player player, String input) {
         if (!ready) return new Response(GameState.LOBBY_WAITING);
+        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
+
 
         var data = input.split("#");
         var state = GameState.valueOf(data[0]);
@@ -85,6 +94,7 @@ public enum Game {
                 throw new IllegalStateException("Unexpected value: " + state);
         }
 
+        endTurn();
         return null;
     }
 
