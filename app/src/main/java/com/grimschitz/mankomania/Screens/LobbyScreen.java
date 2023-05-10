@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.grimschitz.mankomania.client.Client;
 import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.client.PropertyName;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -70,7 +71,7 @@ public class LobbyScreen extends AppCompatActivity implements PropertyChangeList
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("playerNames")) {
+        if (evt.getPropertyName().equals(PropertyName.PLAYER_NAMES.name())) {
             update((String[]) evt.getNewValue());
         }
     }
