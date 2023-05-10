@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/reelOne"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="184dp"
+        app:layout_constraintEnd_toStartOf="@+id/reelTwo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cherry" />
+
+    <ImageView
+        android:id="@+id/reelTwo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="184dp"
+        app:layout_constraintEnd_toStartOf="@+id/reelThree"
+        app:layout_constraintStart_toEndOf="@+id/reelOne"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lemon" />
+
+    <ImageView
+        android:id="@+id/reelThree"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="184dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reelTwo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bar" />
+
+    <Button
+        android:id="@+id/spinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="380dp"
+        android:text="Spin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reelTwo" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spin to play!"
+        app:layout_constraintBottom_toTopOf="@+id/spinButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reelThree"
+        app:layout_constraintVertical_bias="0.513" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
