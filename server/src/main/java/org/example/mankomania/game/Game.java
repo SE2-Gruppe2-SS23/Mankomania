@@ -34,7 +34,7 @@ public enum Game {
     public void checkLobby() {
         for (Player player : players) {
             if (player == null) {
-                sendToAll(GameState.LOBBY_WAITING + "#" + Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
+                sendToAll(GameState.LOBBY_WAITING, Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
                 return;
             }
         }
@@ -53,10 +53,10 @@ public enum Game {
         else return null;
     }
 
-    private void sendToAll(String message) {
+    private void sendToAll(GameState gameState, String... data) {
         for (Player player : players) {
             try {
-                new DataOutputStream(player.socket().getOutputStream()).writeUTF(message);
+                new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
