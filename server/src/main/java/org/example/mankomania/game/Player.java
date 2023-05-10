@@ -6,8 +6,9 @@ import java.util.Objects;
 public final class Player {
     private final String name;
     private final Socket socket;
-    private final int money;
-    private final int position;
+    private int money;
+    private int position;
+//    TODO: how do player starting positions get determined?
 
     Player(String name, Socket socket, int money, int position) {
         this.name = name;
@@ -32,13 +33,21 @@ public final class Player {
         return position;
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (Player) obj;
         return Objects.equals(this.name, that.name) &&
-                Objects.equals(this.socket, that.socket) &&
+                Objects.equals(this.socket, that.socket) && //TODO: consider reconnecting players
                 this.money == that.money &&
                 this.position == that.position;
     }
