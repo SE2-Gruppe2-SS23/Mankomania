@@ -16,26 +16,17 @@
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
         <activity
-            android:name=".RouletteWheelView"
+            android:name=".ToolsLogic.RouletteWheelView"
             android:exported="false" />
         <activity
-            android:name=".RouletteActivity"
+            android:name=".ToolsLogic.RouletteActivity"
             android:exported="false" />
         <activity
-            android:name=".SlotsActivity"
+            android:name=".ToolsLogic.SlotsActivity"
             android:exported="false" />
         <activity
-            android:name=".RollDiceActivity"
+            android:name=".ToolsLogic.RollDiceActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

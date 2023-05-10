@@ -1,4 +1,4 @@
-package com.grimschitz.mankomania;
+package com.grimschitz.mankomania.ToolsLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.grimschitz.mankomania.R;
 
 import java.util.Random;
 

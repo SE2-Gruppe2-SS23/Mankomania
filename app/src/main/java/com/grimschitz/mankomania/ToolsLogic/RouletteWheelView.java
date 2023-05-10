@@ -1,4 +1,4 @@
-package com.grimschitz.mankomania;
+package com.grimschitz.mankomania.ToolsLogic;
 
 
 
@@ -12,6 +12,8 @@ import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+
+import com.grimschitz.mankomania.R;
 
 public class RouletteWheelView extends View {
     private Paint paint;
@@ -93,7 +95,7 @@ public class RouletteWheelView extends View {
         float extraRotation = calculateExtraRotation(result);
         float totalRotation = (fullRotations * 360) + extraRotation+5.0f;
 
-        mediaPlayer = MediaPlayer.create(this.getContext(),R.raw.wheel_spin);
+        mediaPlayer = MediaPlayer.create(this.getContext(), R.raw.wheel_spin);
         mediaPlayer.start();
         ObjectAnimator animator = ObjectAnimator.ofFloat(this, "rotation", totalRotation);
         animator.setDuration(3000);
