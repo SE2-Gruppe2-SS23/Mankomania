@@ -27,14 +27,41 @@ public class Boerse
     }
     private void delShare(int amount, int shareType){
         if(shareType==1) shareSteel--;
-        if(shareType==1) shareOil--;
-        if(shareType==1) sharePower--;
+        if(shareType==2) shareOil--;
+        if(shareType==3) sharePower--;
+    }
+
+    public int getShareSteel() {
+        return shareSteel;
+    }
+
+    public int getShareOil() {
+        return shareOil;
+    }
+
+    public int getSharePower() {
+        return sharePower;
     }
 
     private void boerseEvent(){
         int shareType = (int)(Math.random() * 3 + 1);
         int raiseFall = (int)(Math.random() * 2 + 1);
-        //TODO: For each connected Player, Check how many Shares of selected Type Player has/Check if Rais or Fall/Edit Money of Player Element
+        //TODO:Animation
+        switch (shareType){
+            case 1:
+                if(raiseFall==1) player.addMoney(shareSteel*10000);
+                else player.loseMoney(shareOil*10000);
+                break;
+            case 2:
+                if(raiseFall==1) player.addMoney(shareOil*10000);
+            else player.loseMoney(shareOil*10000);
+                break;
+            case 3:
+                if(raiseFall==1) player.addMoney(sharePower*10000);
+                else player.loseMoney(shareOil*10000);
+                break;
+        }
+
     }
 
 }
