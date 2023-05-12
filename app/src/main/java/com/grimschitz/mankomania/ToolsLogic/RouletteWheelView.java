@@ -22,6 +22,9 @@ public class RouletteWheelView extends View {
 
     private MediaPlayer mediaPlayer;
 
+    public RouletteWheelView(){
+        super(null);
+    }
     public RouletteWheelView(Context context) {
         super(context);
         init();
