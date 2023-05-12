@@ -3,6 +3,7 @@ package com.grimschitz.mankomania.ToolsLogic;
 
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -22,9 +23,7 @@ public class RouletteWheelView extends View {
 
     private MediaPlayer mediaPlayer;
 
-    public RouletteWheelView(){
-        super(null);
-    }
+
     public RouletteWheelView(Context context) {
         super(context);
         init();
