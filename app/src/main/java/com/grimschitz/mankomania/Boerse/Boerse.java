@@ -9,6 +9,8 @@ public class Boerse
     private int shareOil;
     private int sharePower;
 
+    private Boerse[] otherPlayersBoerse;
+
 
     public Boerse(Player p) {
         this.player = p;
@@ -61,6 +63,12 @@ public class Boerse
                 else player.loseMoney(shareOil*10000);
                 break;
         }
+
+    }
+    private void updateBoerse(){
+        //TODO: Sync with Server
+        //getOtherPlayersShars
+        //forEachPlayer update Shares
 
     }
 
