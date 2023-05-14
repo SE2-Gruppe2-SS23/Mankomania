@@ -8,16 +8,29 @@ on:
       - main
       - 'releases/*'
 
-version: 1.0
 jobs:
-  qodana:
+  qodana-server:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: 'Qodana Scan'
-        uses: JetBrains/qodana-action@v2022.3.3
+      - name: 'Qodana Scan - server'
+        uses: JetBrains/qodana-action@v2023.1.0
         with:
-          args: --baseline,qodana.sarif.json
+          args: |
+            --source-directory,server,
+            --baseline,qodana-server.sarif.json
+          artifact-name: qodana-server
+  qodana-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: 'Qodana Scan - app'
+        uses: JetBrains/qodana-action@v2023.1.0
+        with:
+          args: |
+            --source-directory,app,
+            --baseline,qodana-app.sarif.json
+          artifact-name: qodana-app
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
