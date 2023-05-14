@@ -1,0 +1,19 @@
+{
+  "total": 7,
+  "tools inspection": {
+    "Code Inspection": 7
+  },
+  "linter": "QDJVMC",
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git",
+        "revisionId": "b6c67ee055c3d2b46de0387eca276ee782016bce",
+        "branch": "main"
+      }
+    },
+    "deviceId": "200820300000000-fd7c-e5e0-0186-eb9e0d7648dc",
+    "jobUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania/actions/runs/4974409774",
+    "repoUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git"
+  }
+}

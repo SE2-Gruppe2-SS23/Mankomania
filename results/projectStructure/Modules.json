@@ -1,0 +1,149 @@
+{
+  "modules": [
+    {
+      "name": "Mankomania",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$",
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        }
+      ]
+    },
+    {
+      "name": "Mankomania.app",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/app",
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        }
+      ]
+    },
+    {
+      "name": "Mankomania.server",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/server",
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        }
+      ]
+    },
+    {
+      "name": "Mankomania.server.test",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/server/src/test",
+          "sourceFolders": []
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        },
+        {
+          "name": "Mankomania.server.main",
+          "type": "Module"
+        },
+        {
+          "name": "Gradle: io.vavr:vavr:1.0.0-alpha-4",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.jupiter:junit-jupiter:5.9.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.jupiter:junit-jupiter-params:5.9.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.jupiter:junit-jupiter-api:5.9.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.apiguardian:apiguardian-api:1.1.2",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.platform:junit-platform-commons:1.9.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.opentest4j:opentest4j:1.2.0",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.jupiter:junit-jupiter-engine:5.9.1",
+          "type": "Library"
+        },
+        {
+          "name": "Gradle: org.junit.platform:junit-platform-engine:1.9.1",
+          "type": "Library"
+        }
+      ]
+    },
+    {
+      "name": "Mankomania.server.main",
+      "contentEntries": [
+        {
+          "path": "file://$PROJECT_DIR$/server/src/main",
+          "sourceFolders": [
+            {
+              "path": "file://$PROJECT_DIR$/server/src/main/java",
+              "type": "Source",
+              "packagePrefix": ""
+            }
+          ]
+        }
+      ],
+      "orderEntries": [
+        {
+          "name": "17",
+          "type": "SDK"
+        },
+        {
+          "name": "<Module source>",
+          "type": "Own sources"
+        },
+        {
+          "name": "Gradle: io.vavr:vavr:1.0.0-alpha-4",
+          "type": "Library"
+        }
+      ]
+    }
+  ]
+}

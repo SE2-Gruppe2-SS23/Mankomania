@@ -1,0 +1,24 @@
+{
+  "modules": [
+    {
+      "name": "Mankomania",
+      "languageLevel": 11
+    },
+    {
+      "name": "Mankomania.app",
+      "languageLevel": 17
+    },
+    {
+      "name": "Mankomania.server",
+      "languageLevel": 11
+    },
+    {
+      "name": "Mankomania.server.test",
+      "languageLevel": 11
+    },
+    {
+      "name": "Mankomania.server.main",
+      "languageLevel": 11
+    }
+  ]
+}
