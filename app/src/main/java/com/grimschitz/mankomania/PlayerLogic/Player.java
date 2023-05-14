@@ -1,5 +1,6 @@
 package com.grimschitz.mankomania.PlayerLogic;
 
+import com.grimschitz.mankomania.Boerse.Boerse;
 import com.grimschitz.mankomania.FieldLogic.Field;
 import com.grimschitz.mankomania.ShareLogic.Share;
 
@@ -15,9 +16,12 @@ public class Player {
     private HashMap<Share,Integer> shares;
     private int dices = 0;
 
+    private Boerse boerse;
+
     public Player(){
         money = 1000000;
         shares = new HashMap<Share,Integer>();
+        boerse = new Boerse(this);
     }
 
     public Player(Field initialField, int playerIndex, String playerSocket){
