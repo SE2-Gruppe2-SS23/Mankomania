@@ -7,6 +7,7 @@ public enum Track {
     THIRD(0.75,1.5),
     FOURTH(1,1.0);
 
+
 public final double winMultiplier;
 public final double prizeMultiplier;
 
