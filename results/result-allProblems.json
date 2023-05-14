@@ -173,38 +173,6 @@
       "type": "file",
       "path": "server/src/main/java/org/example/mankomania/Server.java",
       "language": "JAVA",
-      "line": 17,
-      "offset": 13,
-      "length": 5,
-      "code": {
-        "startLine": 15,
-        "length": 5,
-        "offset": 115,
-        "surroundingCode": "    public static void main(String[] args) {\n        try (var serverSocket = new ServerSocket(8080)) {\n            while (true) {\n                new Connection(serverSocket.accept()).start();\n            }"
-      }
-    }
-  ],
-  "attributes": {
-    "module": "Mankomania.server.main",
-    "inspectionName": "InfiniteLoopStatement",
-    "baselineState": "new"
-  },
-  "hash": "fe7ac09bb8f46000e63b5dd38b63273b9537dda8223ad5ee8fd2a5b439b6b453"
-},{
-  "tool": "Code Inspection",
-  "category": "Control flow issues",
-  "type": "Infinite loop statement",
-  "tags": [
-    "JAVA"
-  ],
-  "severity": "High",
-  "comment": "'while' statement cannot complete without throwing an exception",
-  "detailsInfo": "Reports `for`, `while`, or `do` statements that can only exit by throwing an exception. While such statements may be correct, they often happen due to coding errors.\n\nExample:\n\n\n      for (;;) {\n      }\n\n\nUse the **Ignore when placed in Thread.run** option to ignore the\ninfinite loop statements inside `Thread.run`.\nIt may be useful for the daemon threads.\n\nExample:\n\n\n      new Thread(() -> {\n        while (true) {\n        }\n      }).start();\n",
-  "sources": [
-    {
-      "type": "file",
-      "path": "server/src/main/java/org/example/mankomania/Server.java",
-      "language": "JAVA",
       "line": 52,
       "offset": 17,
       "length": 5,
@@ -222,4 +190,36 @@
     "baselineState": "new"
   },
   "hash": "e754ccde054689f6cb189dba605b957a1614e2e4ec97421713aa41eaa8546752"
+},{
+  "tool": "Code Inspection",
+  "category": "Control flow issues",
+  "type": "Infinite loop statement",
+  "tags": [
+    "JAVA"
+  ],
+  "severity": "High",
+  "comment": "'while' statement cannot complete without throwing an exception",
+  "detailsInfo": "Reports `for`, `while`, or `do` statements that can only exit by throwing an exception. While such statements may be correct, they often happen due to coding errors.\n\nExample:\n\n\n      for (;;) {\n      }\n\n\nUse the **Ignore when placed in Thread.run** option to ignore the\ninfinite loop statements inside `Thread.run`.\nIt may be useful for the daemon threads.\n\nExample:\n\n\n      new Thread(() -> {\n        while (true) {\n        }\n      }).start();\n",
+  "sources": [
+    {
+      "type": "file",
+      "path": "server/src/main/java/org/example/mankomania/Server.java",
+      "language": "JAVA",
+      "line": 17,
+      "offset": 13,
+      "length": 5,
+      "code": {
+        "startLine": 15,
+        "length": 5,
+        "offset": 115,
+        "surroundingCode": "    public static void main(String[] args) {\n        try (var serverSocket = new ServerSocket(8080)) {\n            while (true) {\n                new Connection(serverSocket.accept()).start();\n            }"
+      }
+    }
+  ],
+  "attributes": {
+    "module": "Mankomania.server.main",
+    "inspectionName": "InfiniteLoopStatement",
+    "baselineState": "new"
+  },
+  "hash": "fe7ac09bb8f46000e63b5dd38b63273b9537dda8223ad5ee8fd2a5b439b6b453"
 }]}
