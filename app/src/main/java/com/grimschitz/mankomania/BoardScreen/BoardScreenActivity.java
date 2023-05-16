@@ -55,7 +55,9 @@ public class BoardScreenActivity extends AppCompatActivity {
 
         Log.d("Move to x: " + xy[0], " and y" + xy[1] + ", Auf Feld " + playerfield);
         }
-
+    //Todo: Update Other Player Position
+        //Get Other "Players"
+            //move other avatars to position
 
 
 }
