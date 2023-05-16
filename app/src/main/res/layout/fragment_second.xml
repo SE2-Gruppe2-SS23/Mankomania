@@ -7,6 +7,4 @@
         android:id="@+id/fragment_Second_Layout"
         tools:context=".BoardScreen.BoardScreenActivity">
 
-
-
 </RelativeLayout>
