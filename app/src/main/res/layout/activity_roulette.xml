@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/roulette_background">
+    android:background="@drawable/roulette_background"
+    tools:context=".ToolsLogic.RouletteActivity">
 
     <Button
         android:id="@+id/redButton"
