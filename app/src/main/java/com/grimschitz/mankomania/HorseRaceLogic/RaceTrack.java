@@ -1,7 +1,9 @@
 package com.grimschitz.mankomania.HorseRaceLogic;
 
 public class RaceTrack {
+
     private Track currentTrack;
+
    private double prizeMultiplier;
    private double winChanceMultiplier;
 
@@ -12,8 +14,12 @@ public class RaceTrack {
        this.winChanceMultiplier = winChanceMultiplier;
    }
    //-------------GETTER---------------------------------
-   public double getPrizeMultiplier(){return this.prizeMultiplier;}
-    public double getWinChanceMultiplier(){return this.winChanceMultiplier;}
+
+
+    public Track getCurrent() {return currentTrack;}
+    public double getPrizeMultiplier(){return prizeMultiplier;}
+    public double getWinChanceMultiplier(){return winChanceMultiplier;}
+
    //----------------------------------------------------
 
 
