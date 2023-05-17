@@ -7,7 +7,6 @@ plugins {
 android {
     namespace 'com.grimschitz.mankomania'
     compileSdk 33
-
     defaultConfig {
         applicationId "com.grimschitz.mankomania"
         minSdk 24
@@ -16,9 +15,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    lintOptions {
-        disable "Instantiatable"
     }
     buildTypes {
         release {
@@ -33,33 +29,18 @@ android {
     buildFeatures {
         viewBinding true
     }
- testOptions{
-     unitTests.all{
-         useJUnitPlatform()
-         finalizedBy jacocoTestReport
-     }
- }
 
-    task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest'){
-        reports{
-            xml.enabled true
-            xml.destination file("${project.projectDir}/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml")
-        }
 
-        def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-        def debugTree = fileTree(dir: "${buildDir}/intermediates/javac/debug", excludes: fileFilter)
-        def mainSrc = "${project.projectDir}/src/main/java"
 
-        sourceDirectories.from = files([mainSrc])
-        classDirectories.from = files([debugTree])
-        executionData.from = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+    lint {
+        disable 'Instantiatable'
     }
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
@@ -74,6 +55,5 @@ sonarqube {
     property "sonar.organization", "se2-gruppe2-ss23"
     property "sonar.host.url", "https://sonarcloud.io"
       property "sonar.java.coveragePlugin", "jacoco"
-      property "sonar.coveerage.jacoco.xmlReportPaths" , "${project.projectDir}/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml"
   }
 }
