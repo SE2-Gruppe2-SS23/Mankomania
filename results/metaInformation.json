@@ -8,12 +8,12 @@
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git",
-        "revisionId": "ae2a9665e6d5bcf1216e78676368ca8ac1b06b9d",
-        "branch": "feature/SC_Changes"
+        "revisionId": "d22f1e6d80e31706909b8f1724b30ff0288ba830",
+        "branch": "main"
       }
     },
     "deviceId": "200820300000000-fd7c-e5e0-0186-eb9e0d7648dc",
-    "jobUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania/actions/runs/5001177520",
+    "jobUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania/actions/runs/5002450181",
     "repoUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git"
   }
 }
