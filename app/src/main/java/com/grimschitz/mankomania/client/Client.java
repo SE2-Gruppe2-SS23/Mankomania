@@ -15,7 +15,7 @@ public class Client extends Thread {
 
     private static Client instance;
 
-    private final String host = "localhost";
+    private final String host = "10.0.2.2"; //localhost is the emulator itself
     private final int port = 8080;
 
     private DataInputStream reader;
