@@ -49,30 +49,30 @@ public class LobbyScreen extends AppCompatActivity implements PropertyChangeList
     }
 
     public void initConnection(){
-        //TODO: add connection to server logic
         Client.getInstance().start();
         Client.getInstance().addPropertyChangeListener(this);
     }
 
     public void update(String[] players){
+        runOnUiThread(() -> {
+            p1.setText(players[0]);
 
-        p1.setText(players[0]);
+            switch (players.length){
+                case 2 :
+                    p2.setText(players[1]);
+                    break;
+                case 3 :
+                    p2.setText(players[1]);
+                    p3.setText(players[2]);
+                    break;
+                case 4 :
+                    p2.setText(players[1]);
+                    p3.setText(players[2]);
+                    p4.setText(players[3]);
+                    break;
 
-        switch (players.length){
-            case 2 :
-                p2.setText(players[1]);
-                break;
-            case 3 :
-                p2.setText(players[1]);
-                p3.setText(players[2]);
-                break;
-            case 4 :
-                p2.setText(players[1]);
-                p3.setText(players[2]);
-                p4.setText(players[3]);
-                break;
-
-        }
+            }
+        });
     }
 
     public void createActivity(Class nextActivity){
