@@ -1,6 +1,10 @@
 package com.grimschitz.mankomania.client;
 
+import android.util.Log;
+
+import com.grimschitz.mankomania.FieldLogic.Field;
 import com.grimschitz.mankomania.Game;
+import com.grimschitz.mankomania.PlayerLogic.Player;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -73,17 +77,30 @@ public class Client extends Thread {
             writer = new DataOutputStream(socket.getOutputStream());
             while (true) {
                 String input = reader.readUTF();
+                Log.d("client", input);
                 GameState gameState = GameState.valueOf(input.substring(0, input.indexOf("#")));
                 switch (gameState) {
                     case HELLO:
                         break;
                     case LOBBY_WAITING:
-                        Game.getInstance().lobbyReady = false;
+                        Game.getInstance().currentState = GameState.LOBBY_WAITING;
                         setPlayerNames(parsePlayerNames(input));
                         break;
                     case LOBBY_READY:
-                        Game.getInstance().lobbyReady = true;
                         setPlayerNames(parsePlayerNames(input));
+                        Game.getInstance().currentState = GameState.LOBBY_READY;
+//                        TODO: move to dice screen and determine player order
+                        break;
+                    case GAME_START:
+                        Player[] players = new Player[4];
+                        String[] data = parseGameData(input).data();
+                        for (int i = 0; i < data.length; i++) {
+                            String s = data[i];
+                            String[] playerData = s.split(":");
+                            players[i] = new Player(new Field(Integer.parseInt(playerData[1]), ""), i, playerData[0]);
+                        }
+                        Game.getInstance().players = players;
+                        Game.getInstance().currentState = GameState.GAME_START;
                         break;
                     case GAME_MOVE:
                         setGameData(parseGameData(input));
