@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -11,9 +12,9 @@ public enum Game {
     INSTANCE;
 
     private final Player[] players = new Player[4];
-    private Boolean ready = false;
+    private Player currentPlayer = null;
 
-    private Player currentPlayer;
+    private GameState currentState = GameState.LOBBY_WAITING;
 
     Game() {
 //        init
@@ -36,13 +37,20 @@ public enum Game {
     public void checkLobby() {
         for (Player player : players) {
             if (player == null) {
-                sendToAll(GameState.LOBBY_WAITING, Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
+                sendToAll(GameState.LOBBY_WAITING, Arrays.stream(players).filter(Objects::nonNull).map(Player::name).collect(Collectors.joining(",")));
                 return;
             }
         }
-        ready = true;
-        currentPlayer = players[0];
+        currentState = GameState.LOBBY_READY;
         sendToAll(GameState.LOBBY_READY, Arrays.stream(players).map(Player::name).collect(Collectors.joining(",")));
+    }
+
+    private void determineTurns() {
+        for (Player player : players) if (player.lastRoll() == 0) return;
+        Arrays.sort(players, (o1, o2) -> o2.lastRoll() - o1.lastRoll());
+        currentPlayer = players[0];
+        currentState = GameState.GAME_START;
+        sendToAll(GameState.GAME_START, Arrays.stream(players).map(player -> player.name() + ":" + player.position()).collect(Collectors.joining(",")));
     }
 
     private void checkWin() {
@@ -66,15 +74,19 @@ public enum Game {
     }
 
     public Response move(Player player, String input) {
-        if (!ready) return new Response(GameState.LOBBY_WAITING);
-        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
-
-
         var data = input.split("#");
         var state = GameState.valueOf(data[0]);
 
-        switch (state) {
+        if (currentState == GameState.LOBBY_WAITING) return new Response(GameState.LOBBY_WAITING);
+        if (currentState == GameState.LOBBY_READY) {
+            player.setLastRoll(Integer.parseInt(data[1]));
+            determineTurns();
+            return new Response(GameState.GAME_WAIT);
+        }
+        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
 
+
+        switch (state) {
             case GAME_MOVE:
                 player.setPosition(Integer.parseInt(data[1]));
 //                TODO: make board checks serverside or on each client and just communicate new pos + money?
@@ -99,12 +111,12 @@ public enum Game {
     }
 
     private void sendToAll(GameState gameState, String... data) {
-        for (Player player : players) {
+        Arrays.stream(players).filter(Objects::nonNull).forEach(player -> {
             try {
                 new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
+        });
     }
 }
