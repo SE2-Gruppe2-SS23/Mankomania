@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GlobalAssets extends AppCompatActivity{
     public static Class nextScreen;
-
+    public static Integer bet;
     public GlobalAssets(){}
 
 //    public void createActivity(AppCompatActivity nextActivity){
