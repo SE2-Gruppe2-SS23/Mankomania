@@ -12,9 +12,6 @@
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
         <activity
-            android:name=".PlaceBetScreen"
-            android:exported="false" />
-        <activity
             android:name=".Screens.HorseRaceScreen"
             android:exported="false" />
         <activity

@@ -14,16 +14,15 @@ public class HorseRace {
 
      }
 
-     public void setTrackForPlayer(Player p, Track track) {
+     public void setTrackForPlayer(Player p, Track track){
 
-         tracks.put(p, new RaceTrack(track, track.prizeMultiplier, track.winMultiplier));
+         tracks.put(p,new RaceTrack(track,track.prizeMultiplier,track.winMultiplier));
+
      }
-
 
      public void placeBetForPlayer(Player p, int amount){
          bets.put(p,amount);
      }
-
 
 
 }

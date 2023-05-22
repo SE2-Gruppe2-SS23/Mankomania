@@ -2,7 +2,6 @@ package com.grimschitz.mankomania.HorseRaceLogic;
 
 public enum Track {
     //TODO modify multipliers accordingly
-
     FIRST(0.25,2.5),
     SECOND(0.5,2.0),
     THIRD(0.75,1.5),
