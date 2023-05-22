@@ -1,21 +1,22 @@
 package com.grimschitz.mankomania;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.grimschitz.mankomania.FieldLogic.Field;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class FieldTest {
-    private Field first;
-    private Field second;
-    private Field third;
-    private Field fourth;
+    private static Field first;
+    private static Field second;
+    private static Field third;
+    private static Field fourth;
 
-    @Before
-    public void init(){
+    @BeforeAll
+    public static void init(){
         first = new Field(1,"First");
         second = new Field(2,"Second");
         third = new Field(3,"Third");
