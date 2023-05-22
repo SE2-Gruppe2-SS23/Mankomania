@@ -1,18 +1,20 @@
 package com.grimschitz.mankomania;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.grimschitz.mankomania.ShareLogic.Share;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 
 public class ShareTest {
 
-    private Share share;
+    private static Share share;
 
-    @Before
-    public void init(){share = Share.DRY_OIL_PLC;}
+    @BeforeAll
+    public static void init(){share = Share.DRY_OIL_PLC;}
 
     @Test
     public void testName(){assertEquals(Share.DRY_OIL_PLC.getName(),share.getName());}

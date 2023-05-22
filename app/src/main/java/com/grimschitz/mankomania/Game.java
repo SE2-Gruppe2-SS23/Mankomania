@@ -4,16 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.BoardLogic.Board;
 import com.grimschitz.mankomania.PlayerLogic.Player;
+import com.grimschitz.mankomania.client.GameState;
 
-public class Game extends AppCompatActivity {
+public class Game {
     private static Game instance;
     private static Board board;
 
-    public Boolean lobbyReady = false;
+    public GameState currentState = GameState.LOBBY_WAITING;
 
     public Player[] players = new Player[4];
 
     public Game(){
+//            TODO: can we do this at a later point?
         board = new Board();
 
         for (Player p: players) {

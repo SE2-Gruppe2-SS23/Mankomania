@@ -1,8 +1,7 @@
 package com.grimschitz.mankomania.Boerse;
 
-import junit.framework.TestCase;
 
-public class BoerseTest extends TestCase {
+public class BoerseTest {
 
     public void testGetShareSteel() {
     }

@@ -4,11 +4,12 @@ import java.net.Socket;
 import java.util.Objects;
 
 public final class Player {
+    private static int index = 0;
     private final String name;
     private final Socket socket;
     private int money;
     private int position;
-//    TODO: how do player starting positions get determined?
+    private int lastRoll;
 
     Player(String name, Socket socket, int money, int position) {
         this.name = name;
@@ -41,6 +42,14 @@ public final class Player {
         this.money = money;
     }
 
+    public int lastRoll() {
+        return lastRoll;
+    }
+
+    public void setLastRoll(int lastRoll) {
+        this.lastRoll = lastRoll;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
@@ -67,6 +76,21 @@ public final class Player {
     }
 
     public Player(String name, Socket socket) {
-        this(name, socket, 1000000, 0);
+        this(name, socket, 1000000, determineStartingPosition());
+    }
+
+    private static int determineStartingPosition() {
+//        TODO: figure out proper starting positions
+        switch (index++) {
+            case 0:
+                return 0;
+            case 1:
+                return 10;
+            case 2:
+                return 20;
+            case 3:
+                return 30;
+        }
+        return 0;
     }
 }
