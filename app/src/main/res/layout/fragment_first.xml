@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:context=".BoardScreen.BoardScreenActivity">
 
     <com.grimschitz.mankomania.BoardScreen.SquareGridView
         android:id="@+id/gridView"
@@ -15,6 +15,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/playercorners"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/boardBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:rotation="90"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/backgroundboard"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:srcCompat="@drawable/blue"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="549dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:srcCompat="@drawable/red"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:srcCompat="@drawable/green"
+                tools:layout_editor_absoluteX="362dp"
+                tools:layout_editor_absoluteY="16dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:srcCompat="@drawable/yellwo"
+                tools:layout_editor_absoluteX="365dp"
+                tools:layout_editor_absoluteY="549dp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="230dp"
+                tools:layout_editor_absoluteY="606dp"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/button"
@@ -27,6 +93,315 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/Fields"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/pferd"
+                android:layout_width="44dp"
+                android:layout_height="151dp"
+                app:srcCompat="@drawable/_pferderennen"
+                tools:layout_editor_absoluteX="59dp"
+                tools:layout_editor_absoluteY="441dp" />
+
+            <ImageView
+                android:id="@+id/casino"
+                android:layout_width="44dp"
+                android:layout_height="151dp"
+                app:srcCompat="@drawable/_casino"
+                tools:layout_editor_absoluteX="332dp"
+                tools:layout_editor_absoluteY="442dp" />
+
+            <ImageView
+                android:id="@+id/field21"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="301dp" />
+
+            <ImageView
+                android:id="@+id/field18"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="142dp" />
+
+            <ImageView
+                android:id="@+id/field19"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="194dp" />
+
+            <ImageView
+                android:id="@+id/field20"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="249dp" />
+
+            <ImageView
+                android:id="@+id/field23"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="413dp" />
+
+            <ImageView
+                android:id="@+id/field22"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="356dp" />
+
+            <ImageView
+                android:id="@+id/field14"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="464dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="106dp" />
+
+            <ImageView
+                android:id="@+id/field17"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="464dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="213dp" />
+
+            <ImageView
+                android:id="@+id/field15"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="464dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="267dp" />
+
+            <ImageView
+                android:id="@+id/field16"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="464dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="158dp" />
+
+            <ImageView
+                android:id="@+id/boerse"
+                android:layout_width="42dp"
+                android:layout_height="126dp"
+                app:srcCompat="@drawable/_boerse"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <ImageView
+                android:id="@+id/field1"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="106dp" />
+
+            <ImageView
+                android:id="@+id/field3"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="213dp" />
+
+            <ImageView
+                android:id="@+id/field4"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="267dp" />
+
+            <ImageView
+                android:id="@+id/field2"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="158dp" />
+
+            <ImageView
+                android:id="@+id/field6"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="142dp" />
+
+            <ImageView
+                android:id="@+id/field8"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="194dp" />
+
+            <ImageView
+                android:id="@+id/field9"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="249dp" />
+
+            <ImageView
+                android:id="@+id/field10"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="301dp" />
+
+            <ImageView
+                android:id="@+id/field11"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="356dp" />
+
+            <ImageView
+                android:id="@+id/field12"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="413dp" />
+
+            <ImageView
+                android:id="@+id/field_pferd"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="464dp" />
+
+            <ImageView
+                android:id="@+id/field_casino"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="464dp" />
+
+            <ImageView
+                android:id="@+id/field"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp"
+                tools:layout_editor_absoluteY="85dp" />
+
+            <ImageView
+                android:id="@+id/field24"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="85dp" />
+
+            <ImageView
+                android:id="@+id/field_bors"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="49dp" />
+
+            <ImageView
+                android:id="@+id/aukt"
+                android:layout_width="57dp"
+                android:layout_height="209dp"
+                app:srcCompat="@drawable/_auktionshaus"
+                tools:layout_editor_absoluteX="323dp"
+                tools:layout_editor_absoluteY="-26dp" />
+
+            <ImageView
+                android:id="@+id/field_aukt"
+                android:layout_width="64dp"
+                android:layout_height="98dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pngwing_com"
+                tools:layout_editor_absoluteX="323dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/players"
+            android:layout_width="409dp"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="1dp">
+
+            <ImageView
+                android:id="@+id/player3"
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/drgrimme_trans"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="347dp"
+                tools:layout_editor_absoluteY="536dp" />
+
+            <ImageView
+                android:id="@+id/player2"
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/drgrimme_trans"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="337dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <ImageView
+                android:id="@+id/player1"
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/drgrimme_trans"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="28dp" />
+
+            <ImageView
+                android:id="@+id/player4"
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/drgrimme_trans"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="533dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -36,18 +411,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button"
             tools:ignore="UnknownId" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="61dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
-            android:src="@drawable/drgrimme_trans"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
