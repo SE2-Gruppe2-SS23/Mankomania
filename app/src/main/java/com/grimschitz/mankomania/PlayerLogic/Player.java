@@ -13,6 +13,10 @@ public class Player {
     private String name;
     private int money;
     private Field currentPosition;
+
+
+    private int curPosition;
+
     private HashMap<Share,Integer> shares;
     private int dices = 0;
 
@@ -41,6 +45,7 @@ public class Player {
     public int getMoney(){return money;}
     public int getShareAmount(Share name){return shares.get(name);}
     public Field getCurrentPosition(){return currentPosition;}
+    public int getCurPosition(){return curPosition;}
     //-------------------------------------
     //------------SETTERS------------------
     public void setDices(int dices){this.dices = dices;}
