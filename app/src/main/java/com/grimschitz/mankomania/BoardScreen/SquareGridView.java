@@ -35,7 +35,7 @@ public class SquareGridView extends View {
 
     private void init() {
         numColumns = 10;
-        numRows = 15;
+        numRows = 16;
         linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         linePaint.setColor(Color.BLACK);
         linePaint.setStrokeWidth(2);
@@ -82,7 +82,7 @@ public class SquareGridView extends View {
         int row = cellId / numColumns;
         int x = GRID_PADDING + (column * cellSize) + (cellSize / 2);
         int y = GRID_PADDING + (row * cellSize) + (cellSize / 2);
-        return new int[]{x, y};
+        return new int[]{x-60, y-50};
     }
 }
 

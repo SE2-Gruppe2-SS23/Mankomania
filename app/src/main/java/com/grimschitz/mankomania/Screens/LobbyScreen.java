@@ -43,7 +43,7 @@ public class LobbyScreen extends AppCompatActivity implements PropertyChangeList
             @Override
             public void onClick(View view) {
                 //TODO set ready in lobby
-                //createActivity(BoardScreenActivity.class);
+                createActivity(BoardScreenActivity.class);
             }
         });
     }
