@@ -46,6 +46,7 @@ public class Player {
     public int getShareAmount(Share name){return shares.get(name);}
     public Field getCurrentPosition(){return currentPosition;}
     public int getCurPosition(){return curPosition;}
+    public Boerse getPlayerBoerse(){return boerse;}
     //-------------------------------------
     //------------SETTERS------------------
     public void setDices(int dices){this.dices = dices;}
