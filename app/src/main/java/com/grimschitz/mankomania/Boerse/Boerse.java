@@ -21,16 +21,22 @@ public class Boerse
     }
 
 
-    private void addShare(int amount, int shareType){
+    public void addShare(int amount, int shareType){
         if(shareType==1) shareSteel++;
         if(shareType==2) shareOil++;
         if(shareType==3) sharePower++;
 
     }
-    private void delShare(int amount, int shareType){
-        if(shareType==1) shareSteel--;
-        if(shareType==2) shareOil--;
-        if(shareType==3) sharePower--;
+    public void delShare(int amount, int shareType){
+        if(shareType==1){
+            if (shareSteel!=0) shareSteel--;
+        }
+        if(shareType==2){
+            if (shareOil!=0) shareOil--;
+        }
+        if(shareType==3){
+            if (sharePower!=0) sharePower--;
+        }
     }
 
     public int getShareSteel() {
@@ -45,7 +51,7 @@ public class Boerse
         return sharePower;
     }
 
-    private void boerseEvent(){
+    public void boerseEvent(){
         int shareType = (int)(Math.random() * 3 + 1);
         int raiseFall = (int)(Math.random() * 2 + 1);
         //TODO:Animation
