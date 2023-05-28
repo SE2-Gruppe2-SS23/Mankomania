@@ -4,32 +4,41 @@ package com.grimschitz.mankomania.Boerse;
 import com.grimschitz.mankomania.PlayerLogic.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.TestMethodOrder;
+
+@TestMethodOrder(OrderAnnotation.class)
 public class BoerseTest {
 
-    private Player p;
-    private Boerse boerse;
+    private static Player p;
+    private static Boerse boerse;
 
     @BeforeAll
     public static void init() {
-        Player p = new Player();
-        Boerse boerse = p.getPlayerBoerse();
-
+        p = new Player();
+        boerse = new Boerse(p);
     }
     @Test
+    @Order(1)
     public void testGetShareSteel() {
         Assertions.assertEquals(2,  boerse.getShareSteel());
     }
     @Test
+    @Order(2)
     public void testGetShareOil() {
         Assertions.assertEquals(2,  boerse.getShareSteel());
     }
     @Test
+    @Order(3)
     public void testGetSharePower() {
         Assertions.assertEquals(2,  boerse.getSharePower());
     }
     @Test
-    public void testaddShare() {
+    @Order(4)
+    public void testzaddShare() {
         int s = boerse.getShareSteel();
         int o = boerse.getShareOil();
         int p = boerse.getSharePower();
@@ -43,7 +52,8 @@ public class BoerseTest {
         Assertions.assertEquals(p+1,  boerse.getShareSteel());
     }
     @Test
-    public void testdelShare() {
+    @Order(5)
+    public void testzdelShare() {
         int s = boerse.getShareSteel();
         int o = boerse.getShareOil();
         int p = boerse.getSharePower();
@@ -56,5 +66,4 @@ public class BoerseTest {
         Assertions.assertEquals(o-1,  boerse.getShareSteel());
         Assertions.assertEquals(p-1,  boerse.getShareSteel());
     }
-
 }
