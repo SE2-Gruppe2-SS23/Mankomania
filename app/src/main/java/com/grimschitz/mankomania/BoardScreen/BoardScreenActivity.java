@@ -3,6 +3,7 @@ package com.grimschitz.mankomania.BoardScreen;
 import static com.grimschitz.mankomania.Game.getBoard;
 import static com.grimschitz.mankomania.Game.getInstance;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import com.grimschitz.mankomania.BoardLogic.Board;
 import com.grimschitz.mankomania.Game;
 import com.grimschitz.mankomania.GlobalAssets;
 import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
 import com.grimschitz.mankomania.client.Client;
 
 import android.util.Log;
@@ -32,6 +34,7 @@ public class BoardScreenActivity extends AppCompatActivity {
     private TextView text;
     private int validField[] = {21,22,24,26,27,38,48,68,78,88,98,108,118,138,148,147,145,144,143,141,131,111,101,91,71,61,41};// 27 Valide Felder des Grids in der richtigen Reihenfolge
 
+    private int diceResult;
     int playerfield;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +85,22 @@ public class BoardScreenActivity extends AppCompatActivity {
 
         // Get Each Player from Server assign ImageView
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+              diceResult = data.getIntExtra("result", 0);
+
+            }
+        }
+    }
+
     public void wurfeln(View view) {
-        int wurfel = (int)(Math.random() * 6 + 1);
+        Intent myIntent = new Intent(BoardScreenActivity.this, RollDiceActivity.class);
+        startActivityForResult(myIntent, 1);
+        int wurfel = diceResult;
         ImageView image = findViewById(R.id.player1);
 
         //TODO: IF Field 11, 18, 138 , 131 --> Minigame
