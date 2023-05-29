@@ -12,8 +12,10 @@
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
         <activity
-            android:name=".Screens.HorseRaceScreen"
-            android:exported="false" />
+            android:name=".Screens.HorseRace.HorseRaceScreen"
+            android:exported="true" />
+        <activity android:name=".ToolsLogic.RollDiceActivity"
+            android:exported="true"/>
         <activity
             android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
             android:exported="true"

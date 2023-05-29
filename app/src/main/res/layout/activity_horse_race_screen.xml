@@ -2,156 +2,109 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout"
+    android:id="@+id/horse_RaceContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/race_board"
-    tools:context=".Screens.HorseRaceScreen">
+    android:background="@drawable/backgroundboard"
+    tools:context=".Screens.HorseRace.HorseRaceScreen">
 
     <TextView
-        android:id="@+id/field8"
-        android:layout_width="55dp"
-        android:layout_height="290dp"
+        android:id="@+id/lbl_P4"
+        android:layout_width="74dp"
+        android:layout_height="77dp"
+        android:text="@string/p4"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.952" />
 
     <TextView
-        android:id="@+id/field7"
-        android:layout_width="55dp"
-        android:layout_height="290dp"
+        android:id="@+id/lbl_P3"
+        android:layout_width="75dp"
+        android:layout_height="79dp"
+        android:text="@string/p3"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.712" />
+
+    <Button
+        android:id="@+id/btn_Throw"
+        android:layout_width="107dp"
+        android:layout_height="55dp"
+        android:text="@string/throw_dice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
-        android:id="@+id/field4"
-        android:layout_width="65dp"
-        android:layout_height="290dp"
+        android:id="@+id/lbl_HorseRace"
+        android:layout_width="235dp"
+        android:layout_height="50dp"
+        android:text="@string/horse_race"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.043" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.grimschitz.mankomania.Screens.HorseRace.Tracks"
+        android:layout_width="703dp"
+        android:layout_height="313dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.836"
+        tools:layout="@layout/fragment_tracks" />
 
     <TextView
-        android:id="@+id/field5"
-        android:layout_width="60dp"
-        android:layout_height="290dp"
+        android:id="@+id/lbl_P1"
+        android:layout_width="74dp"
+        android:layout_height="75dp"
+        android:text="@string/p1"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.241" />
 
     <TextView
-        android:id="@+id/field3"
-        android:layout_width="65dp"
-        android:layout_height="290dp"
+        android:id="@+id/lbl_P2"
+        android:layout_width="74dp"
+        android:layout_height="77dp"
+        android:text="P2"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.473" />
 
-    <TextView
-        android:id="@+id/field2"
-        android:layout_width="65dp"
-        android:layout_height="290dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.286"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
-
-    <ImageView
-        android:id="@+id/imgPlayer4"
-        android:layout_width="97dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916"
-        app:srcCompat="@drawable/horse" />
-
-    <ImageView
-        android:id="@+id/imgPlayer3"
-        android:layout_width="97dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.706"
-        app:srcCompat="@drawable/horse" />
-
-    <ImageView
-        android:id="@+id/imgPlayer2"
-        android:layout_width="97dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
-        app:srcCompat="@drawable/horse" />
-
-    <ImageView
-        android:id="@+id/imgPlayer1"
-        android:layout_width="97dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279"
-        app:srcCompat="@drawable/horse" />
-
-    <TextView
-        android:id="@+id/goalField"
-        android:layout_width="50dp"
-        android:layout_height="285dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
-
-    <TextView
-        android:id="@+id/field1"
-        android:layout_width="65dp"
-        android:layout_height="290dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />
-
-    <TextView
-        android:id="@+id/field6"
-        android:layout_width="60dp"
-        android:layout_height="290dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.663"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
 </androidx.constraintlayout.widget.ConstraintLayout>
