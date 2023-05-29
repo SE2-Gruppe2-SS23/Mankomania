@@ -17,7 +17,6 @@ public class Boerse
         this.shareOil = 2;
         this.sharePower = 2;
         this.shareSteel = 2;
-
     }
 
 
