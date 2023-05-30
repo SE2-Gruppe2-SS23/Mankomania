@@ -8,12 +8,12 @@
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git",
-        "revisionId": "d08fa2d9514876ef8b826e166185236a8f7b1563",
+        "revisionId": "a7d1ca981f89a1850521ab031d866dc14d746cd1",
         "branch": "feature/MiniGame_HorseRace"
       }
     },
     "deviceId": "200820300000000-fd7c-e5e0-0186-eb9e0d7648dc",
-    "jobUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania/actions/runs/5124637734",
+    "jobUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania/actions/runs/5124665956",
     "repoUrl": "https://github.com/SE2-Gruppe2-SS23/Mankomania.git"
   }
 }
