@@ -1,5 +1,5 @@
 {
-  "gradleJvm": "#USE_PROJECT_JDK",
+  "gradleJvm": "Embedded JDK",
   "libraries": [
     {
       "ideaName": "Gradle: io.vavr:vavr:1.0.0-alpha-4",
