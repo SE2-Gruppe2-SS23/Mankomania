@@ -10,9 +10,13 @@ import java.util.HashMap;
 public class Player {
 
     private int playerIndex;
-    private String playerSocket;
+    private String name;
     private int money;
     private Field currentPosition;
+
+
+    private int curPosition;
+
     private HashMap<Share,Integer> shares;
     private int dices = 0;
 
@@ -24,28 +28,30 @@ public class Player {
         boerse = new Boerse(this);
     }
 
-    public Player(Field initialField, int playerIndex, String playerSocket){
+    public Player(Field initialField, int playerIndex, String name){
         money = 1000000;
         shares = new HashMap<Share,Integer>();
         SecureRandom secRand = new SecureRandom();
         setInitialRandomShares(secRand.nextInt(3 - 1) + 1);
         this.playerIndex = playerIndex;
         currentPosition = initialField;
-        this.playerSocket = playerSocket;
+        this.name = name;
     }
 
     //------------GETTERS------------------
     public int getDices(){return dices;}
     public int getPlayerIndex(){return playerIndex;}
-    public String getPlayerSocket(){return playerSocket;}
+    public String getName(){return name;}
     public int getMoney(){return money;}
     public int getShareAmount(Share name){return shares.get(name);}
     public Field getCurrentPosition(){return currentPosition;}
+    public int getCurPosition(){return curPosition;}
+    public Boerse getPlayerBoerse(){return boerse;}
     //-------------------------------------
     //------------SETTERS------------------
     public void setDices(int dices){this.dices = dices;}
     public void setCurrentPosition(Field field){this.currentPosition = field;}
-    public void setPlayerSocket(String playerSocket){this.playerSocket = playerSocket;}
+    public void setName(String name){this.name = name;}
     public void setPlayerIndex(int playerIndex){this.playerIndex = playerIndex;}
     public void setMoney(int money){this.money = money;}
     public void setShares(int hardSteel, int shortCircuit, int dryOil){

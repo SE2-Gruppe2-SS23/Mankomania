@@ -13,6 +13,7 @@ import java.net.Socket;
 public class Server {
 
     public static void main(String[] args) {
+        System.out.println("Server started");
         try (var serverSocket = new ServerSocket(8080)) {
             while (true) {
                 new Connection(serverSocket.accept()).start();
