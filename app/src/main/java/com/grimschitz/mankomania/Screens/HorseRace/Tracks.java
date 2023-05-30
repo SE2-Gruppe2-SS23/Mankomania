@@ -44,11 +44,6 @@ public class Tracks extends Fragment {
                              Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.fragment_tracks, container, false);
         initPlayerIcons(view);
-        p1 = view.findViewById(R.id.icon_P1);
-        p2 = view.findViewById(R.id.icon_P2);
-        p3 = view.findViewById(R.id.icon_P3);
-        p4 = view.findViewById(R.id.icon_P4);
-        goalView = view.findViewById(R.id.goalField);
         setMovementFields(view);
         return view;
     }
