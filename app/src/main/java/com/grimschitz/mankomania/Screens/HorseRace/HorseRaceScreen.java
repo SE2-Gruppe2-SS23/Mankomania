@@ -1,6 +1,12 @@
 package com.grimschitz.mankomania.Screens.HorseRace;
 
 import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.movementFields;
+import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.p1;
+import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.p2;
+import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.p3;
+import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.p4;
+import static com.grimschitz.mankomania.Screens.HorseRace.Tracks.goalView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,7 +79,7 @@ public class HorseRaceScreen extends AppCompatActivity {
         return Tracks.playerIcons.get(p);
     }
     public boolean isWinner(ImageView playerIcon){
-        return playerIcon.getRight() > Tracks.goalView.getLeft();
+        return playerIcon.getRight() > goalView.getLeft();
     }
 
     public void createActivity(Class nextActivity){
