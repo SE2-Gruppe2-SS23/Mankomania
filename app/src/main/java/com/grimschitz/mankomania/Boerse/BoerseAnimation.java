@@ -26,17 +26,17 @@ import android.widget.ImageView;
             rotateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rotatePointer();
+                    rotatePointer(3600f);
                 }
             });
         }
 
-        private void rotatePointer() {
+        private void rotatePointer(float deg) {
             if (rotateAnimator != null && rotateAnimator.isRunning()) {
                 rotateAnimator.cancel();
             }
 
-            rotateAnimator = ObjectAnimator.ofFloat(pointerImageView, View.ROTATION, 0f, 360f);
+            rotateAnimator = ObjectAnimator.ofFloat(pointerImageView, View.ROTATION, 0f, deg);
             rotateAnimator.setDuration(2000);
             rotateAnimator.setInterpolator(new LinearInterpolator());
             rotateAnimator.start();
