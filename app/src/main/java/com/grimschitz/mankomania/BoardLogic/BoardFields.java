@@ -4,7 +4,6 @@ import com.grimschitz.mankomania.FieldLogic.Field;
 
 public class BoardFields {
     private static Field[] fields;
-    public BoardFields() {}
 
     public static Field[] getFields(){
         initFields();

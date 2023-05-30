@@ -22,9 +22,9 @@ public class Tracks extends Fragment {
 
     public static HashMap<Player, ImageView> playerIcons;
     public static ImageView p1;
-    public ImageView p2;
-    public ImageView p3;
-    public ImageView p4;
+    public static ImageView p2;
+    public static ImageView p3;
+    public static ImageView p4;
     public static TextView goalView;
     public static ArrayList<TextView> movementFields = new ArrayList<>();
     public static ImageView currentPlayer;
@@ -43,7 +43,7 @@ public class Tracks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          View view = inflater.inflate(R.layout.fragment_tracks, container, false);
-        playerIcons = new HashMap<>();
+        initPlayerIcons(view);
         p1 = view.findViewById(R.id.icon_P1);
         p2 = view.findViewById(R.id.icon_P2);
         p3 = view.findViewById(R.id.icon_P3);
@@ -63,6 +63,15 @@ public class Tracks extends Fragment {
         movementFields.add(v.findViewById(R.id.field7));
         movementFields.add(v.findViewById(R.id.field8));
         movementFields.add(v.findViewById(R.id.goalField));
+    }
+
+    public static void initPlayerIcons(View view){
+        playerIcons = new HashMap<>();
+        p1 = view.findViewById(R.id.icon_P1);
+        p2 = view.findViewById(R.id.icon_P2);
+        p3 = view.findViewById(R.id.icon_P3);
+        p4 = view.findViewById(R.id.icon_P4);
+        goalView = view.findViewById(R.id.goalField);
     }
 
 

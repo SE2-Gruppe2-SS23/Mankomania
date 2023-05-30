@@ -20,18 +20,19 @@ public class PlaceBetScreen extends AppCompatActivity {
         setContentView(R.layout.activity_place_bet_screen);
         bet = findViewById(R.id.editTxt_Bet);
         place = findViewById(R.id.btn_Placebet);
-        place.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        place.setOnClickListener(view -> {
 
-                if(Integer.parseInt(bet.getText().toString()) <= 0 || Integer.parseInt(bet.getText().toString()) > 50000 ){
-                    Toast.makeText(PlaceBetScreen.this, "Bet must be more than 0 and less than 50000", Toast.LENGTH_LONG).show();
-                }else if(bet.getText().toString().isEmpty()){
-                    Toast.makeText(PlaceBetScreen.this, "Bet must not be null", Toast.LENGTH_LONG).show();
-                }else{
-                    GlobalAssets.bet = Integer.parseInt(bet.getText().toString());
-                }
+            if(Integer.parseInt(bet.getText().toString()) <= 0 || Integer.parseInt(bet.getText().toString()) > 50000 ){
+                Toast.makeText(PlaceBetScreen.this, "Bet must be more than 0 and less than 50000", Toast.LENGTH_LONG).show();
+            }else if(bet.getText().toString().isEmpty()){
+                Toast.makeText(PlaceBetScreen.this, "Bet must not be null", Toast.LENGTH_LONG).show();
+            }else{
+                setBet(Integer.parseInt(bet.getText().toString()));
             }
         });
+    }
+
+    public static void setBet(int bet){
+        GlobalAssets.bet = bet;
     }
 }

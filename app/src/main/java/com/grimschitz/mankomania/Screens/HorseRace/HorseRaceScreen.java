@@ -32,13 +32,11 @@ public class HorseRaceScreen extends AppCompatActivity {
         setContentView(R.layout.activity_horse_race_screen);
         diceThrow = findViewById(R.id.btn_Throw);
         raceInstance = new HorseRace();
-        diceThrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //moveIcon(Tracks.p1,9);
-//                GlobalAssets.numberOfDices = 1;
-//               createActivity(RollDiceActivity.class);
-            }
+        diceThrow.setOnClickListener(v -> {
+            //TODO set logic with server
+            // moveIcon(Tracks.p1,9);
+            // GlobalAssets.numberOfDices = 1;
+            // createActivity(RollDiceActivity.class);
         });
 
 
@@ -53,7 +51,7 @@ public class HorseRaceScreen extends AppCompatActivity {
 //        }
 
     }
-    public void setCurrentPlayer(ImageView icon){
+    public static void setCurrentPlayer(ImageView icon){
         Tracks.currentPlayer = icon;
     }
     public void setPlayerIcon(Player p, ImageView icon){
