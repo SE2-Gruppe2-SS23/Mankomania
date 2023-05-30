@@ -40,9 +40,6 @@ public class HorseRaceScreen extends AppCompatActivity {
         raceInstance = new HorseRace();
         diceThrow.setOnClickListener(v -> {
             //TODO set logic with server
-            // moveIcon(Tracks.p1,9);
-            // GlobalAssets.numberOfDices = 1;
-            // createActivity(RollDiceActivity.class);
         });
 
 
@@ -52,9 +49,9 @@ public class HorseRaceScreen extends AppCompatActivity {
         ObjectAnimator animation = ObjectAnimator.ofFloat(icon,"translationX", movementFields.get(field - 1).getLeft());
         animation.setDuration(3000);
         animation.start();
-//        if(isWinner(icon)){
+        if(isWinner(icon)){
 //            //TODO send info to server
-//        }
+       }
 
     }
     public static void setCurrentPlayer(ImageView icon){
