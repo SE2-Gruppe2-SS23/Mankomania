@@ -10,33 +10,33 @@
 
     <TextView
         android:id="@+id/lbl_P4"
-        android:layout_width="74dp"
-        android:layout_height="77dp"
+        android:layout_width="52dp"
+        android:layout_height="66dp"
         android:text="@string/p4"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.869" />
 
     <TextView
         android:id="@+id/lbl_P3"
-        android:layout_width="75dp"
-        android:layout_height="79dp"
+        android:layout_width="54dp"
+        android:layout_height="52dp"
         android:text="@string/p3"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712" />
+        app:layout_constraintVertical_bias="0.651" />
 
     <Button
         android:id="@+id/btn_Throw"
@@ -68,43 +68,44 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="com.grimschitz.mankomania.Screens.HorseRace.Tracks"
-        android:layout_width="703dp"
-        android:layout_height="313dp"
+        android:layout_width="494dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836"
+        app:layout_constraintVertical_bias="0.678"
         tools:layout="@layout/fragment_tracks" />
 
     <TextView
         android:id="@+id/lbl_P1"
-        android:layout_width="74dp"
-        android:layout_height="75dp"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
         android:text="@string/p1"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <TextView
         android:id="@+id/lbl_P2"
-        android:layout_width="74dp"
-        android:layout_height="77dp"
+        android:layout_width="53dp"
+        android:layout_height="43dp"
         android:text="P2"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
+        app:layout_constraintVertical_bias="0.464" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

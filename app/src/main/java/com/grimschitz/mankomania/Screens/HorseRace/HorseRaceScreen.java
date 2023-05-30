@@ -35,18 +35,17 @@ public class HorseRaceScreen extends AppCompatActivity {
         diceThrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveIcon(Tracks.p1,5);
+                //moveIcon(Tracks.p1,9);
 //                GlobalAssets.numberOfDices = 1;
 //               createActivity(RollDiceActivity.class);
             }
         });
 
-        //moveIcon(currentPlayer,GlobalAssets.diceAmount);
 
     }
 
     public void moveIcon(ImageView icon, int field){
-        ObjectAnimator animation = ObjectAnimator.ofFloat(icon,"translationX", movementFields.get(field).getRight());
+        ObjectAnimator animation = ObjectAnimator.ofFloat(icon,"translationX", movementFields.get(field - 1).getLeft());
         animation.setDuration(3000);
         animation.start();
 //        if(isWinner(icon)){
