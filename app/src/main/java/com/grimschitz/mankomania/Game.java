@@ -7,6 +7,7 @@ import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.client.GameState;
 
 public class Game {
+    public static Board board;
     private static Game instance;
 
     public GameState currentState = GameState.LOBBY_WAITING;
@@ -14,7 +15,7 @@ public class Game {
     public Player[] players = new Player[4];
 
     public Game(){
-        Board board = new Board();
+        board = new Board();
 
 //            TODO: can we do this at a later point?
 
