@@ -9,4 +9,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="place_a_bet">Place a Bet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="horse_race">HORSE RACE</string>
+    <string name="p1">P1</string>
+    <string name="throw_dice">Throw Dice</string>
+    <string name="p4">P4</string>
+    <string name="p3">P3</string>
 </resources>
