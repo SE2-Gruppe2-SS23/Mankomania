@@ -23,16 +23,33 @@
             android:exported="false" />
         <activity android:name=".ToolsLogic.RollDiceActivity"
             android:exported="false"/>
+        <activity android:name=".Screens.PlaceBetScreen"
+            android:exported="false"/>
+        <activity android:name=".Screens.LobbyScreen"
+            android:exported="false"/>
+        <activity android:name=".ToolsLogic.RouletteActivity"
+            android:exported="false"/>
+        <activity android:name=".ToolsLogic.SlotsActivity"
+            android:exported="false"/>
+
+        <activity android:name=".Screens.StartScreen"
+            android:exported="false"/>
+        <activity android:name=".Screens.LoadScreen"
+            android:exported="false"/>
+        <activity android:name=".Launchers.Launcher"
+            android:exported="true">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_board_screen"
             android:theme="@style/Theme.Mankomania.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
