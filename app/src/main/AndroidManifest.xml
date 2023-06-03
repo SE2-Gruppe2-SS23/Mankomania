@@ -18,7 +18,6 @@
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
 
-
         <activity
             android:name=".Screens.LoadScreen"
             android:exported="false" />
@@ -53,15 +52,14 @@
         <activity
             android:name=".Boerse.BoerseAnimation"
             android:exported="false" />
-
-
-            <activity
+        <activity
                 android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
                 android:label="@string/title_activity_board_screen"
                 android:theme="@style/Theme.Mankomania.NoActionBar"
                 android:exported="true">
-            </activity>
+        </activity>
     </application>
+
 
 </manifest>
 
