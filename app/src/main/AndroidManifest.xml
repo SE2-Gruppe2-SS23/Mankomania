@@ -49,15 +49,6 @@
             android:name=".ToolsLogic.RouletteWheelView"
             android:exported="false" />
         <activity
-            android:name=".ToolsLogic.RouletteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.SlotsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.RollDiceActivity"
-            android:exported="false" />
-        <activity
             android:name=".Boerse.BoerseAnimation"
             android:exported="false" />
 
