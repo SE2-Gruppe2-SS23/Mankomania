@@ -34,6 +34,10 @@ android {
         viewBinding true
     }
     testOptions {
+        packagingOptions {
+        pickFirst 'META-INF/LICENSE.md'
+            pickFirst 'META-INF/LICENSE-notice.md'
+    }
         unitTests.all {
             useJUnitPlatform()
             finalizedBy jacocoTestReport
@@ -65,7 +69,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    implementation 'com.android.support.test:rules:1.0.2'
+    implementation 'com.android.support.test:runner:1.0.2'
+
+
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

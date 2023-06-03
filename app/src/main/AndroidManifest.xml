@@ -50,6 +50,9 @@
         <activity
             android:name=".ToolsLogic.RollDiceActivity"
             android:exported="false" />
+        <activity
+            android:name=".Boerse.BoerseAnimation"
+            android:exported="false" />
 
 
             <activity
