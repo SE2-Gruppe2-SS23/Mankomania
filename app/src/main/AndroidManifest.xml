@@ -46,6 +46,13 @@
         </activity>
 
         <activity
+            android:name=".ToolsLogic.RouletteWheelView"
+            android:exported="false" />
+        <activity
+            android:name=".Boerse.BoerseAnimation"
+            android:exported="false" />
+
+        <activity
             android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_board_screen"
