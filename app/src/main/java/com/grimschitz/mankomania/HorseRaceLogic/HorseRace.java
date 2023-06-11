@@ -24,5 +24,7 @@ public class HorseRace {
          bets.put(p,amount);
      }
 
+     public HashMap<Player,Integer> getBets(){return bets;}
+    public HashMap<Player,RaceTrack> getTracks(){return tracks;}
 
 }
