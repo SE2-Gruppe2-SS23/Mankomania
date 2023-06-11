@@ -3,7 +3,7 @@ package com.grimschitz.mankomania.HorseRaceTests;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.grimschitz.mankomania.BoardLogic.Board;
+
 import com.grimschitz.mankomania.HorseRaceLogic.HorseRace;
 import com.grimschitz.mankomania.HorseRaceLogic.Track;
 import com.grimschitz.mankomania.PlayerLogic.Player;
