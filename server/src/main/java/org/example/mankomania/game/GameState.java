@@ -13,7 +13,8 @@ public enum GameState {
     MINIGAME_CASINO,
     MINIGAME_RACE,
     MINIGAME_EXCHANGE,
-    MINIGAME_AUCTION
+    MINIGAME_AUCTION,
+    INFO
 }
 
 //split game states up if necessary. Message protocol is 'GameState#anyDataAsString'

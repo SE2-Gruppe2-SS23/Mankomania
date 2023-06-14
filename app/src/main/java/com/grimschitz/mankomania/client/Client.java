@@ -63,9 +63,13 @@ public class Client extends Thread {
         support.firePropertyChange(PropertyName.GAME_DATA.name(), oldGameData, gameData);
     }
 
-    public Client() {}
-    public static Client getInstance(){
-        if(instance == null){instance = new Client();}
+    public Client() {
+    }
+
+    public static Client getInstance() {
+        if (instance == null) {
+            instance = new Client();
+        }
         return instance;
     }
 
@@ -83,12 +87,12 @@ public class Client extends Thread {
                     case HELLO:
                         break;
                     case LOBBY_WAITING:
-                        Game.getInstance().currentState = GameState.LOBBY_WAITING;
+                        Game.getInstance().setCurrentState(GameState.LOBBY_WAITING);
                         setPlayerNames(parsePlayerNames(input));
                         break;
                     case LOBBY_READY:
                         setPlayerNames(parsePlayerNames(input));
-                        Game.getInstance().currentState = GameState.LOBBY_READY;
+                        Game.getInstance().setCurrentState(GameState.LOBBY_READY);
 //                        TODO: move to dice screen and determine player order
                         break;
                     case GAME_START:
@@ -99,8 +103,8 @@ public class Client extends Thread {
                             String[] playerData = s.split(":");
                             players[i] = new Player(new Field(Integer.parseInt(playerData[1]), ""), i, playerData[0]);
                         }
-                        Game.getInstance().players = players;
-                        Game.getInstance().currentState = GameState.GAME_START;
+                        Game.getInstance().setPlayers(players);
+                        Game.getInstance().setCurrentState(GameState.GAME_START);
                         break;
                     case GAME_MOVE:
                         setGameData(parseGameData(input));
@@ -108,6 +112,17 @@ public class Client extends Thread {
                     case GAME_WAIT:
                         break;
                     case GAME_END:
+                        break;
+                    case MINIGAME_CASINO:
+                        break;
+                    case MINIGAME_RACE:
+                        break;
+                    case MINIGAME_EXCHANGE:
+                        break;
+                    case MINIGAME_AUCTION:
+                        break;
+                    case INFO:
+                        Game.getInstance().setRandomNumber(Integer.parseInt(parseGameData(input).data()[0]));
                         break;
                     default:
                         setGameData(parseGameData(input));
