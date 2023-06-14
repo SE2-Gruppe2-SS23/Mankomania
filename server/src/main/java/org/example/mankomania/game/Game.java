@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public enum Game {
@@ -65,6 +66,8 @@ public enum Game {
 
     private void endTurn() {
         currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
+        var rnd = new Random();
+        sendToAll(GameState.INFO, String.valueOf(rnd.nextInt()));
     }
 
     public void disconnect() {
