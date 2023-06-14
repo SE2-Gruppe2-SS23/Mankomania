@@ -38,6 +38,8 @@ public class Game {
         support.firePropertyChange(PropertyName.PLAYERS.name(), oldPlayers, players);
     }
 
+    public String clientName;
+
     private int randomNumber;
 
     public int getRandomNumber() {

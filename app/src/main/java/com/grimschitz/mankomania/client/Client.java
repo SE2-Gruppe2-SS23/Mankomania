@@ -85,6 +85,7 @@ public class Client extends Thread {
                 GameState gameState = GameState.valueOf(input.substring(0, input.indexOf("#")));
                 switch (gameState) {
                     case HELLO:
+                        Game.getInstance().clientName = parseGameData(input).data()[0];
                         break;
                     case LOBBY_WAITING:
                         Game.getInstance().setCurrentState(GameState.LOBBY_WAITING);
