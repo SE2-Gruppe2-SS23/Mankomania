@@ -51,6 +51,9 @@ public class Player {
     public int[] getRaceRoll(){return raceRoll;}
     //-------------------------------------
     //------------SETTERS------------------
+    public void setRaceRoll(int[] newArray){
+        raceRoll = newArray;
+    }
     public void setDices(int dices){this.dices = dices;}
     public void setCurrentPosition(Field field){this.currentPosition = field;}
     public void setName(String name){this.name = name;}

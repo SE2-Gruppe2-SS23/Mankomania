@@ -27,16 +27,20 @@ import com.grimschitz.mankomania.HorseRaceLogic.HorseRace;
 import com.grimschitz.mankomania.HorseRaceLogic.Track;
 import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
 import com.grimschitz.mankomania.client.Client;
 import com.grimschitz.mankomania.client.GameState;
+import com.grimschitz.mankomania.client.PropertyName;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class HorseRaceScreen extends AppCompatActivity {
+public class HorseRaceScreen extends AppCompatActivity implements PropertyChangeListener {
 
     public HorseRace raceInstance;
 
@@ -52,35 +56,42 @@ public class HorseRaceScreen extends AppCompatActivity {
         setPlayerIcon(Game.getInstance().getPlayers()[2], p3);
         setPlayerIcon(Game.getInstance().getPlayers()[3], p4);
 
-        for (int rollInstance = 0; rollInstance < 8; rollInstance++) {
-            moveIcon(p1,Game.getInstance().getPlayers()[0].getRaceRoll()[rollInstance]);
-            if(isWinner(p1)){toastAndSendToOthers(getIconPlayer(p1));}
-            moveIcon(p2,Game.getInstance().getPlayers()[1].getRaceRoll()[rollInstance]);
-            if(isWinner(p2)){toastAndSendToOthers(getIconPlayer(p2));}
-            moveIcon(p3,Game.getInstance().getPlayers()[2].getRaceRoll()[rollInstance]);
-            if(isWinner(p3)){toastAndSendToOthers(getIconPlayer(p3));}
-            moveIcon(p4,Game.getInstance().getPlayers()[3].getRaceRoll()[rollInstance]);
-            if(isWinner(p4)){toastAndSendToOthers(getIconPlayer(p4));}
-
-        }
+        diceThrow.setOnClickListener(view ->{
+            createActivity(RollDiceActivity.class);
+            // TODO send roll to server
+//            try {
+//                Client.getInstance().send(GameState.MINIGAME_RACE, String.valueOf(GlobalAssets.diceAmount));
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+        });
 
 
     }
 
     public void toastAndSendToOthers(Player p) {
         try {
-            Toast.makeText(this, "Player " + p.getName() + "wins" , Toast.LENGTH_SHORT).show();
-            p.setMoney(p.getMoney() - GlobalAssets.bet);
-            Client.getInstance().send(GameState.INFO,String.valueOf(p.getMoney()));
+            Toast.makeText(this, "Player " + p.getName() + "wins" , Toast.LENGTH_LONG).show();
+            for (Player player : Game.getInstance().getPlayers()) {
+                player.setRaceRoll(new int[8]);
+            }
+            if(p.getName() == Game.getInstance().clientName) {
+                p.setMoney(p.getMoney() - GlobalAssets.bet);
+                Client.getInstance().send(GameState.INFO, String.valueOf(p.getMoney()));
+            }
+
+            finish();
         }catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void moveIcon(ImageView icon, int field){
-        ObjectAnimator animation = ObjectAnimator.ofFloat(icon,"translationX", movementFields.get(field - 1).getLeft());
-        animation.setDuration(3000);
-        animation.start();
+        if(field > 0) {
+            ObjectAnimator animation = ObjectAnimator.ofFloat(icon, "translationX", movementFields.get(field - 1).getLeft());
+            animation.setDuration(3000);
+            animation.start();
+        }
 
     }
     public static void setCurrentPlayer(ImageView icon){
@@ -121,5 +132,26 @@ public class HorseRaceScreen extends AppCompatActivity {
         Intent nextScreen = new Intent(this,nextActivity);
         this.startActivity(nextScreen);
     }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals(PropertyName.GAME_STATE.name())){
+            if(evt.getNewValue().equals(GameState.GAME_MOVE)){
+                for (int rollInstance = 0; rollInstance < 8; rollInstance++) {
+                    moveIcon(p1,Game.getInstance().getPlayers()[0].getRaceRoll()[rollInstance]);
+                    if(isWinner(p1)){toastAndSendToOthers(getIconPlayer(p1));}
+                    moveIcon(p2,Game.getInstance().getPlayers()[1].getRaceRoll()[rollInstance]);
+                    if(isWinner(p2)){toastAndSendToOthers(getIconPlayer(p2));}
+                    moveIcon(p3,Game.getInstance().getPlayers()[2].getRaceRoll()[rollInstance]);
+                    if(isWinner(p3)){toastAndSendToOthers(getIconPlayer(p3));}
+                    moveIcon(p4,Game.getInstance().getPlayers()[3].getRaceRoll()[rollInstance]);
+                    if(isWinner(p4)){toastAndSendToOthers(getIconPlayer(p4));}
+
+                }
+                Game.getInstance().setCurrentState(GameState.MINIGAME_RACE);
+            }
+        }
+    }
+
 
 }
