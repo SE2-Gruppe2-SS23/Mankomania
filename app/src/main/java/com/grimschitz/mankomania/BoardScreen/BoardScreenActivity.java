@@ -149,33 +149,33 @@ public class BoardScreenActivity extends AppCompatActivity {
 
 // Valide Felder des Grids in der richtigen Reihenfolge
 
-        int xy[] = gridView.getCellCoordinates(validField[game.players[0].getCurPosition()]);
+        int xy[] = gridView.getCellCoordinates(validField[game.getPlayers()[0].getCurPosition()]);
 
         ImageView image = findViewById(R.id.player1);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[1].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[1].getCurPosition()]);
         image = findViewById(R.id.player2);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player3);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player4);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
         TextView money = (TextView) findViewById(R.id.moneyAmount);
-        money.setText(game.players[1].getMoney());
+        money.setText(game.getPlayers()[1].getMoney());
 
     }
     //Todo: Update Other Player Position
