@@ -1,31 +1,23 @@
 package com.grimschitz.mankomania.BoardScreen;
 
-import static com.grimschitz.mankomania.Game.getBoard;
 import static com.grimschitz.mankomania.Game.getInstance;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.grimschitz.mankomania.BoardLogic.Board;
-import com.grimschitz.mankomania.Game;
-import com.grimschitz.mankomania.GlobalAssets;
-import com.grimschitz.mankomania.R;
-import com.grimschitz.mankomania.client.Client;
-
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.grimschitz.mankomania.Boerse.BoerseAnimation;
+import com.grimschitz.mankomania.Game;
+import com.grimschitz.mankomania.PlayerLogic.Player;
+import com.grimschitz.mankomania.R;
+
+import java.util.concurrent.TimeUnit;
 
 public class BoardScreenActivity extends AppCompatActivity {
 
@@ -33,7 +25,8 @@ public class BoardScreenActivity extends AppCompatActivity {
     private TextView text;
     private int validField[] = {21,22,24,26,27,38,48,68,78,88,98,108,118,138,148,147,145,144,143,141,131,111,101,91,71,61,41};// 27 Valide Felder des Grids in der richtigen Reihenfolge
 
-    private int dummyMoney;
+    private static int dummyMoney;
+    private Player dummyPlayer;
     int playerfield;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +34,9 @@ public class BoardScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_screen);
        text = (TextView) findViewById(R.id.textView3);
         playerfield=0;
+        dummyPlayer = new Player();
+
+
         dummyMoney = 1000000;
 
         gridView = findViewById(R.id.gridView);
@@ -53,10 +49,19 @@ public class BoardScreenActivity extends AppCompatActivity {
                   }
 
                   startingPos();
+                  //updatePlayers(); //As Soon as server is running replace startingPos() with updatePlayers
               }
         });
 
     }
+
+    public BoardScreenActivity(){
+        dummyMoney = 1000000;
+    }
+
+    public BoardScreenActivity(int i){
+    }
+
     public void startingPos(){
         Log.d("Starting:", "Starting pos");
         int xy[] = gridView.getCellCoordinates(10);
@@ -92,11 +97,10 @@ public class BoardScreenActivity extends AppCompatActivity {
 
         // Get Each Player from Server assign ImageView
     }
-    public void wurfeln(View view) {
+    public void wurfeln(View view) throws InterruptedException {
         int wurfel = (int)(Math.random() * 6 + 1);
         ImageView image = findViewById(R.id.player1);
 
-        //TODO: IF Field 11, 18, 138 , 131 --> Minigame
 
         //TODO: get Playerfield from active
         playerfield = playerfield+wurfel;
@@ -109,6 +113,25 @@ public class BoardScreenActivity extends AppCompatActivity {
 
         Log.d("Move to Field:" + validField[playerfield],"Würfel"+ wurfel + "x" + xy[0] + " and y" + xy[1] + ", Auf Feld " + playerfield);
 
+        if(playerfield == 0 || playerfield == 5 || playerfield == 13 || playerfield == 18){
+
+            switch(playerfield){
+
+                case 0:
+                    runBoerseAnimation();
+                    break;
+                    //dummyPlayer.getPlayerBoerse().boerseEvent(this, new BoerseAnimation());
+                case 5:
+                    break;
+
+                case 13:
+                    break;
+
+                case 18:
+                    break;
+
+            }
+        }
         if(playerfield != 11 && playerfield != 18 && playerfield != 138 && playerfield != 131){
             moneyEffect();
         }
@@ -123,12 +146,12 @@ public class BoardScreenActivity extends AppCompatActivity {
         TextView text = (TextView) findViewById(R.id.broadcast);
 
         if(rand == 1 || rand == 3) {
-            dummyMoney = dummyMoney -10000;
+            dummyPlayer.setMoney(dummyPlayer.getMoney()-10000);
             //game.players[1].setMoney(game.players[1].getMoney()-10000);
             text.setText("Du hast 10.000 Coins\nverloren!");
         }
         if(rand == 2){
-            dummyMoney = dummyMoney +10000;
+            dummyPlayer.setMoney(dummyPlayer.getMoney()+10000);
             //game.players[1].setMoney(game.players[1].getMoney()+10000);
             text.setText("Du hast 10.000 Coins\ngewonnen!");
 
@@ -138,12 +161,17 @@ public class BoardScreenActivity extends AppCompatActivity {
 
 
         TextView money = (TextView) findViewById(R.id.moneyAmount);
-        money.setText(String.valueOf(dummyMoney));
+        money.setText(String.valueOf(dummyPlayer.getMoney()));
         //money.setText(game.players[1].getMoney());
 
     }
 
-    public void updatePlayers(View view) {
+    public void runBoerseAnimation(){
+        Intent intent = new Intent(BoardScreenActivity.this, BoerseAnimation.class);
+        startActivity(intent);
+    }
+
+    public void updatePlayers() {
 
         Game game = getInstance();
 
@@ -178,10 +206,10 @@ public class BoardScreenActivity extends AppCompatActivity {
         money.setText(game.getPlayers()[1].getMoney());
 
     }
+
     //Todo: Update Other Player Position
         //Get Other "Players"
             //move other avatars to position
-
 
 }
 
