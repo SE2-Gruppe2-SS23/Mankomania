@@ -3,6 +3,7 @@ package com.grimschitz.mankomania.BoardScreen;
 import static com.grimschitz.mankomania.Game.getBoard;
 import static com.grimschitz.mankomania.Game.getInstance;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,10 @@ import com.grimschitz.mankomania.BoardLogic.Board;
 import com.grimschitz.mankomania.Game;
 import com.grimschitz.mankomania.GlobalAssets;
 import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.Screens.PlaceBetScreen;
 import com.grimschitz.mankomania.client.Client;
+import com.grimschitz.mankomania.client.GameState;
+import com.grimschitz.mankomania.client.PropertyName;
 
 import android.util.Log;
 import android.view.View;
@@ -19,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -26,7 +32,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class BoardScreenActivity extends AppCompatActivity {
+public class BoardScreenActivity extends AppCompatActivity implements PropertyChangeListener {
 
     private SquareGridView gridView;
     private TextView text;
@@ -105,32 +111,46 @@ public class BoardScreenActivity extends AppCompatActivity {
 
 // Valide Felder des Grids in der richtigen Reihenfolge
 
-        int xy[] = gridView.getCellCoordinates(validField[game.players[0].getCurPosition()]);
+        int xy[] = gridView.getCellCoordinates(validField[game.getPlayers()[0].getCurPosition()]);
 
         ImageView image = findViewById(R.id.player1);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[1].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[1].getCurPosition()]);
         image = findViewById(R.id.player2);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player3);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player4);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
 
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals(PropertyName.GAME_STATE.name())){
+            if(evt.getNewValue().equals(GameState.MINIGAME_RACE)){
+                createActivity(PlaceBetScreen.class);
+            }
+        }
+    }
+
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
+        this.startActivity(nextScreen);
     }
     //Todo: Update Other Player Position
         //Get Other "Players"

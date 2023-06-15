@@ -1,5 +1,6 @@
 package com.grimschitz.mankomania.client;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.grimschitz.mankomania.FieldLogic.Field;
@@ -117,6 +118,7 @@ public class Client extends Thread {
                     case MINIGAME_CASINO:
                         break;
                     case MINIGAME_RACE:
+
                         break;
                     case MINIGAME_EXCHANGE:
                         break;
@@ -149,4 +151,5 @@ public class Client extends Thread {
     private GameData parseGameData(String input) {
         return new GameData(GameState.valueOf(input.substring(0, input.indexOf("#"))), input.substring(input.indexOf("#") + 1).split("#"));
     }
+
 }

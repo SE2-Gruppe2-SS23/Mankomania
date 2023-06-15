@@ -21,6 +21,7 @@ public class Player {
     private int dices = 0;
 
     private Boerse boerse;
+    private int[] raceRoll = new int[8];
 
     public Player(){
         money = 1000000;
@@ -47,6 +48,7 @@ public class Player {
     public Field getCurrentPosition(){return currentPosition;}
     public int getCurPosition(){return curPosition;}
     public Boerse getPlayerBoerse(){return boerse;}
+    public int[] getRaceRoll(){return raceRoll;}
     //-------------------------------------
     //------------SETTERS------------------
     public void setDices(int dices){this.dices = dices;}
