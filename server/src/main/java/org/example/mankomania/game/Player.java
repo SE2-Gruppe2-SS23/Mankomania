@@ -83,16 +83,12 @@ public final class Player {
 
     private static int determineStartingPosition() {
 //        TODO: figure out proper starting positions
-        switch (index++) {
-            case 0:
-                return 0;
-            case 1:
-                return 10;
-            case 2:
-                return 20;
-            case 3:
-                return 30;
-        }
-        return 0;
+        return switch (index++) {
+            case 0 -> 0;
+            case 1 -> 10;
+            case 2 -> 20;
+            case 3 -> 30;
+            default -> 0;
+        };
     }
 }

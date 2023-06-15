@@ -58,23 +58,28 @@ public enum Game {
         for (Player player : players) {
             if (player.money() == 0) {
                 sendToAll(GameState.GAME_END, player.name());
-//                TODO: can multiple players win?
+//                TODO: check on clients?
                 return;
             }
         }
     }
 
+    private final Random random = new Random();
+
     private void endTurn() {
         currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
-        var rnd = new Random();
-        sendToAll(GameState.INFO, String.valueOf(rnd.nextInt()));
+        sendToAll(GameState.INFO, String.valueOf(random.nextInt()));
 //        TODO: update all clients with money & new active player & player position
     }
 
     public void disconnect() {
+//        TODO: https://github.com/SE2-Gruppe2-SS23/Mankomania/issues/38
+        throw new UnsupportedOperationException();
     }
 
     public void reconnect() {
+//        TODO: https://github.com/SE2-Gruppe2-SS23/Mankomania/issues/38
+        throw new UnsupportedOperationException();
     }
 
     private boolean horseRaceStarted = false;
@@ -143,7 +148,7 @@ public enum Game {
             try {
                 new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
     }

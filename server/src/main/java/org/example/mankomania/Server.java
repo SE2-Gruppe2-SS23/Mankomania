@@ -19,7 +19,7 @@ public class Server {
                 new Connection(serverSocket.accept()).start();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -38,13 +38,13 @@ public class Server {
                     var writer = new DataOutputStream(socket.getOutputStream())
             ) {
                 Game.INSTANCE.addPlayer(socket).ifPresentOrElse(
-                        player -> this.player = player,
+                        p -> this.player = p,
                         () -> {
                             try {
                                 writer.writeUTF("Game is full");
                                 socket.close();
                             } catch (IOException e) {
-                                throw new RuntimeException(e);
+                                e.printStackTrace();
                             }
                         }
                 );
