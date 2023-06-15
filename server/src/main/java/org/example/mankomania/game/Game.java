@@ -68,6 +68,7 @@ public enum Game {
         currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
         var rnd = new Random();
         sendToAll(GameState.INFO, String.valueOf(rnd.nextInt()));
+//        TODO: update all clients with money & new active player & player position
     }
 
     public void disconnect() {
@@ -75,6 +76,9 @@ public enum Game {
 
     public void reconnect() {
     }
+
+    private boolean horseRaceStarted = false;
+    private int horseRaceRound = 0;
 
     public Response move(Player player, String input) {
         var data = input.split("#");
@@ -86,7 +90,8 @@ public enum Game {
             determineTurns();
             return new Response(GameState.GAME_WAIT);
         }
-        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
+//        TODO: check this. add only to GAME_MOVE ?
+//        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
 
 
         switch (state) {
@@ -100,16 +105,36 @@ public enum Game {
             case MINIGAME_CASINO:
                 break;
             case MINIGAME_RACE:
+                if (!horseRaceStarted) {
+                    horseRaceStarted = true;
+                    sendToAll(GameState.MINIGAME_RACE);
+                    return null;
+                }
+                player.raceRoll[horseRaceRound++] = Integer.parseInt(data[1]);
+                for (Player p : players) {
+                    if (p.raceRoll[horseRaceRound] == 0) return new Response(GameState.GAME_WAIT);
+                    sendToAll(GameState.MINIGAME_RACE, Arrays.stream(players).map(player1 -> String.valueOf(player1.raceRoll[horseRaceRound])).collect(Collectors.joining(",")));
+                }
                 break;
             case MINIGAME_EXCHANGE:
                 break;
             case MINIGAME_AUCTION:
                 break;
+            case INFO:
+                if (horseRaceStarted) {
+                    player.setMoney(Integer.parseInt(data[1]));
+                    horseRaceStarted = false;
+                    horseRaceRound = 0;
+                    for (Player p : players) {
+                        p.raceRoll = new int[8];
+                    }
+                    endTurn();
+                }
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + state);
         }
 
-        endTurn();
         return null;
     }
 

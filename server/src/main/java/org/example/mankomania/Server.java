@@ -53,6 +53,9 @@ public class Server {
                 while (true) {
                     var input = reader.readUTF();
                     var response = Game.INSTANCE.move(player, input);
+                    if (response == null) {
+                        continue;
+                    }
                     send(writer, response.gameState(), response.data());
                 }
             } catch (IOException e) {
