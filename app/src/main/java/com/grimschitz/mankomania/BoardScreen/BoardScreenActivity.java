@@ -4,11 +4,33 @@ import static com.grimschitz.mankomania.Game.getInstance;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.grimschitz.mankomania.BoardLogic.Board;
+import com.grimschitz.mankomania.GlobalAssets;
+
+import com.grimschitz.mankomania.Screens.PlaceBetScreen;
+import com.grimschitz.mankomania.client.Client;
+import com.grimschitz.mankomania.client.GameState;
+import com.grimschitz.mankomania.client.PropertyName;
+
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +41,8 @@ import com.grimschitz.mankomania.R;
 
 import java.util.concurrent.TimeUnit;
 
-public class BoardScreenActivity extends AppCompatActivity {
+
+public class BoardScreenActivity extends AppCompatActivity implements PropertyChangeListener {
 
     private SquareGridView gridView;
     private TextView text;
@@ -205,6 +228,21 @@ public class BoardScreenActivity extends AppCompatActivity {
         TextView money = (TextView) findViewById(R.id.moneyAmount);
         money.setText(game.getPlayers()[1].getMoney());
 
+    }
+
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals(PropertyName.GAME_STATE.name())){
+            if(evt.getNewValue().equals(GameState.MINIGAME_RACE)){
+                createActivity(PlaceBetScreen.class);
+            }
+        }
+    }
+
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
+        this.startActivity(nextScreen);
     }
 
     //Todo: Update Other Player Position

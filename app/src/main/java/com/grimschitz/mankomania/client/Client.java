@@ -121,6 +121,7 @@ public class Client extends Thread {
                     case MINIGAME_CASINO:
                         break;
                     case MINIGAME_RACE:
+
                         Game.getInstance().setCurrentState(gameState);
                         String[] split = input.substring(input.indexOf("#") + 1).split(",");
                         if (split.length < 4) {
@@ -134,6 +135,7 @@ public class Client extends Thread {
                         Game.getInstance().setCurrentState(GameState.GAME_MOVE);
 
 //                        TODO: reset raceRoll array
+
                         break;
                     case MINIGAME_EXCHANGE:
                         break;
@@ -166,4 +168,5 @@ public class Client extends Thread {
     private GameData parseGameData(String input) {
         return new GameData(GameState.valueOf(input.substring(0, input.indexOf("#"))), input.substring(input.indexOf("#") + 1).split("#"));
     }
+
 }

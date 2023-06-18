@@ -2,6 +2,7 @@ package com.grimschitz.mankomania.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 
 import com.grimschitz.mankomania.GlobalAssets;
 import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.Screens.HorseRace.HorseRaceScreen;
+
+import java.beans.PropertyChangeListener;
 
 public class PlaceBetScreen extends AppCompatActivity {
     private Button place;
@@ -28,11 +32,17 @@ public class PlaceBetScreen extends AppCompatActivity {
                 Toast.makeText(PlaceBetScreen.this, "Bet must not be null", Toast.LENGTH_LONG).show();
             }else{
                 setBet(Integer.parseInt(bet.getText().toString()));
+                createActivity(HorseRaceScreen.class);
             }
         });
     }
 
     public static void setBet(int bet){
         GlobalAssets.bet = bet;
+    }
+
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
+        this.startActivity(nextScreen);
     }
 }
