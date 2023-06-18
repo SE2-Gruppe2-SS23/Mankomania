@@ -3,6 +3,8 @@ package com.grimschitz.mankomania.client;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.core.content.res.TypedArrayUtils;
+
 import com.grimschitz.mankomania.FieldLogic.Field;
 import com.grimschitz.mankomania.Game;
 import com.grimschitz.mankomania.PlayerLogic.Player;
@@ -14,7 +16,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Client extends Thread {
 
@@ -64,9 +69,6 @@ public class Client extends Thread {
         support.firePropertyChange(PropertyName.GAME_DATA.name(), oldGameData, gameData);
     }
 
-    public Client() {
-    }
-
     public static Client getInstance() {
         if (instance == null) {
             instance = new Client();
@@ -112,12 +114,27 @@ public class Client extends Thread {
                         setGameData(parseGameData(input));
                         break;
                     case GAME_WAIT:
+                        Game.getInstance().setCurrentState(gameState);
                         break;
                     case GAME_END:
                         break;
                     case MINIGAME_CASINO:
                         break;
                     case MINIGAME_RACE:
+
+                        Game.getInstance().setCurrentState(gameState);
+                        String[] split = input.substring(input.indexOf("#") + 1).split(",");
+                        if (split.length < 4) {
+                            break;
+                        }
+                        for (int i = 0; i < split.length; i++) {
+                            int[] rolls = Game.getInstance().getPlayers()[i].getRaceRoll();
+                            int index = IntStream.range(0, rolls.length).filter(j -> rolls[j] == 0).findFirst().orElse(-1);
+                            rolls[index] = Integer.parseInt(split[i]);
+                        }
+                        Game.getInstance().setCurrentState(GameState.GAME_MOVE);
+
+//                        TODO: reset raceRoll array
 
                         break;
                     case MINIGAME_EXCHANGE:
