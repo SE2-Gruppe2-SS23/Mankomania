@@ -21,7 +21,7 @@ public class Player {
     private int dices = 0;
 
     private Boerse boerse;
-    private int[] raceRoll = new int[8];
+    private int[] raceRoll;
 
     public Player(){
         money = 1000000;
