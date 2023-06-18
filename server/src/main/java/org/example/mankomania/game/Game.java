@@ -124,6 +124,8 @@ public enum Game {
             case MINIGAME_EXCHANGE:
                 break;
             case MINIGAME_AUCTION:
+                player.setMoney(Integer.parseInt(data[1]));
+                endTurn();
                 break;
             case INFO:
                 if (horseRaceStarted) {
