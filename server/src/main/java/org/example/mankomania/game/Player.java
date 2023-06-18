@@ -11,6 +11,8 @@ public final class Player {
     private int position;
     private int lastRoll;
 
+    public int[] raceRoll = new int[8];
+
     Player(String name, Socket socket, int money, int position) {
         this.name = name;
         this.socket = socket;
@@ -90,7 +92,8 @@ public final class Player {
                 return 20;
             case 3:
                 return 30;
+            default:
+                return 0;
         }
-        return 0;
     }
 }

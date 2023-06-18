@@ -23,6 +23,16 @@ public class Player {
     private Boerse boerse;
     private int[] raceRoll;
 
+    private int[] raceRoll = new int[8];
+
+    public int[] getRaceRoll() {
+        return raceRoll;
+    }
+
+    public void setRaceRoll(int[] raceRoll) {
+        this.raceRoll = raceRoll;
+    }
+
     public Player(){
         money = 1000000;
         shares = new HashMap<Share,Integer>();
