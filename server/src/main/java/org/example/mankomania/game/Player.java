@@ -92,7 +92,8 @@ public final class Player {
                 return 20;
             case 3:
                 return 30;
+            default:
+                return 0;
         }
-        return 0;
     }
 }

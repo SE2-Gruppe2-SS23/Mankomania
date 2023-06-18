@@ -69,9 +69,6 @@ public class Client extends Thread {
         support.firePropertyChange(PropertyName.GAME_DATA.name(), oldGameData, gameData);
     }
 
-    public Client() {
-    }
-
     public static Client getInstance() {
         if (instance == null) {
             instance = new Client();
