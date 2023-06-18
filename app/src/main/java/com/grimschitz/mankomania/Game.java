@@ -9,6 +9,7 @@ import com.grimschitz.mankomania.client.PropertyName;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Arrays;
 
 public class Game {
     public static Board board;
@@ -39,6 +40,10 @@ public class Game {
     }
 
     public String clientName;
+
+    public Player getClientPlayer() {
+        return Arrays.stream(players).filter(p -> p.getName().equals(clientName)).findFirst().orElse(null);
+    }
 
     private int randomNumber;
 
