@@ -66,6 +66,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

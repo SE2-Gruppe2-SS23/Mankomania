@@ -58,6 +58,30 @@
         app:layout_constraintTop_toBottomOf="@+id/reelThree"
         app:layout_constraintVertical_bias="0.513" />
 
+    <EditText
+        android:id="@+id/betAmountEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinButton"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Bet Amount"
+        android:inputType="number"
+        android:maxLength="6"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultTextView"
+        />
+
+    <TextView
+        android:id="@+id/moneyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/reelTwo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
