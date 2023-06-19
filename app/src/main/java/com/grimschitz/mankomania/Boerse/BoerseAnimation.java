@@ -1,7 +1,5 @@
 package com.grimschitz.mankomania.Boerse;
 
-import static com.grimschitz.mankomania.Game.getInstance;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.grimschitz.mankomania.BoardLogic.Board;
 import com.grimschitz.mankomania.BoardScreen.BoardScreenActivity;
-import com.grimschitz.mankomania.Game;
 import com.grimschitz.mankomania.R;
 
 import java.util.Random;
@@ -58,7 +54,10 @@ public class BoerseAnimation extends AppCompatActivity {
 
     private int random() {
         // randomnumber = new Game().players[0].getRandomInt();
-        return gen.nextInt(3);
+        int i = gen.nextInt(3);
+        Log.d("Random: ", "" + i);
+
+        return i;
     }
 
     public void rotatePointer(int rand, int raisFall) {
@@ -81,10 +80,13 @@ public class BoerseAnimation extends AppCompatActivity {
             case 1:
                 str.append("Die Aktie Stahl ");
                 break;
-            case 2:
+            case 3:
                 str.append("Die Aktie Strom ");
                 break;
-            case 3:
+            case 0:
+                str.append("Die Aktie Strom ");
+                break;
+            case 2:
                 str.append("Die Aktie Öl ");
                 break;
         }
