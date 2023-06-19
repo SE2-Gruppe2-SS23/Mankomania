@@ -8,11 +8,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.grimschitz.mankomania.BoardLogic.Board;
-import com.grimschitz.mankomania.GlobalAssets;
-
 import com.grimschitz.mankomania.Screens.PlaceBetScreen;
-import com.grimschitz.mankomania.client.Client;
 import com.grimschitz.mankomania.client.GameState;
 import com.grimschitz.mankomania.client.PropertyName;
 
@@ -25,21 +21,11 @@ import android.widget.TextView;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.Boerse.BoerseAnimation;
 import com.grimschitz.mankomania.Game;
 import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.R;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class BoardScreenActivity extends AppCompatActivity implements PropertyChangeListener {
@@ -49,7 +35,7 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
     private int validField[] = {21,22,24,26,27,38,48,68,78,88,98,108,118,138,148,147,145,144,143,141,131,111,101,91,71,61,41};// 27 Valide Felder des Grids in der richtigen Reihenfolge
 
     private static int dummyMoney;
-    private Player dummyPlayer;
+    private Player player;
     int playerfield;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +43,7 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
         setContentView(R.layout.activity_board_screen);
        text = (TextView) findViewById(R.id.textView3);
         playerfield=0;
-        dummyPlayer = new Player();
+        player = new Player();
 
 
         dummyMoney = 1000000;
@@ -169,12 +155,12 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
         TextView text = (TextView) findViewById(R.id.broadcast);
 
         if(rand == 1 || rand == 3) {
-            dummyPlayer.setMoney(dummyPlayer.getMoney()-10000);
+            player.setMoney(player.getMoney()-10000);
             //game.players[1].setMoney(game.players[1].getMoney()-10000);
             text.setText("Du hast 10.000 Coins\nverloren!");
         }
         if(rand == 2){
-            dummyPlayer.setMoney(dummyPlayer.getMoney()+10000);
+            player.setMoney(player.getMoney()+10000);
             //game.players[1].setMoney(game.players[1].getMoney()+10000);
             text.setText("Du hast 10.000 Coins\ngewonnen!");
 
@@ -184,7 +170,7 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
 
 
         TextView money = (TextView) findViewById(R.id.moneyAmount);
-        money.setText(String.valueOf(dummyPlayer.getMoney()));
+        money.setText(String.valueOf(player.getMoney()));
         //money.setText(game.players[1].getMoney());
 
     }
