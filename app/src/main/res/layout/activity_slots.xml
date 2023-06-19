@@ -4,84 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/casinobackground"
     tools:context=".ToolsLogic.SlotsActivity">
 
-    <ImageView
-        android:id="@+id/reelOne"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toStartOf="@+id/reelTwo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cherry" />
-
-    <ImageView
-        android:id="@+id/reelTwo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toStartOf="@+id/reelThree"
-        app:layout_constraintStart_toEndOf="@+id/reelOne"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/lemon" />
-
-    <ImageView
-        android:id="@+id/reelThree"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reelTwo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/bar" />
-
     <Button
-        android:id="@+id/spinButton"
+        android:id="@+id/slotsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
         android:text="Spin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reelTwo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.781" />
 
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="112dp"
         android:text="Spin to play!"
-        app:layout_constraintBottom_toTopOf="@+id/spinButton"
+        android:textColor="#03FF0D"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/slotsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reelThree"
-        app:layout_constraintVertical_bias="0.513" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
         android:id="@+id/betAmountEditText"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/spinButton"
+        android:layout_below="@id/slotsButton"
         android:layout_centerHorizontal="true"
         android:hint="Enter Bet Amount"
         android:inputType="number"
         android:maxLength="6"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/spinButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#000000"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/slotsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultTextView"
-        />
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/moneyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/reelTwo"
+        android:layout_marginTop="60dp"
+        android:textColor="#03FF0D"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        app:srcCompat="@drawable/slotmachine" />
+
+    <ImageView
+        android:id="@+id/reelOne"
+        android:layout_width="103dp"
+        android:layout_height="103dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/reelTwo"
+        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/cherry" />
+
+    <ImageView
+        android:id="@+id/reelTwo"
+        android:layout_width="105dp"
+        android:layout_height="104dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.534"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/bar" />
+
+    <ImageView
+        android:id="@+id/reelThree"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/lemon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

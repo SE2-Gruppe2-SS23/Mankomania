@@ -1,12 +1,12 @@
 package com.grimschitz.mankomania.ToolsLogic;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.R;
 
@@ -70,6 +70,12 @@ public class RouletteActivity extends AppCompatActivity {
                 } else {
                     resultTextView.setText("You lost! The result is " + result + " (" + color + ")");
                 }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 2000);
             }
         }, spinDuration);
     }

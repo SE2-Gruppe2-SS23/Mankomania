@@ -25,7 +25,7 @@ public class SlotsActivity extends AppCompatActivity {
 
     private int[] reelImages = new int[]{R.drawable.bar, R.drawable.cherry, R.drawable.lemon};
     private SpinLogic spinLogic;
-    private Player player;  // Initialize this with the player object
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SlotsActivity extends AppCompatActivity {
         reelTwo = findViewById(R.id.reelTwo);
         reelThree = findViewById(R.id.reelThree);
 
-        spinButton = findViewById(R.id.spinButton);
+        spinButton = findViewById(R.id.slotsButton);
         resultView = findViewById(R.id.resultTextView);
         betAmountEditText = findViewById(R.id.betAmountEditText);
         moneyTextView = findViewById(R.id.moneyTextView);
@@ -93,6 +93,12 @@ public class SlotsActivity extends AppCompatActivity {
                     reelOne.setImageResource(reelImages[spinResults[0]]);
                     reelTwo.setImageResource(reelImages[spinResults[1]]);
                     reelThree.setImageResource(reelImages[spinResults[2]]);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                        }
+                    }, 2000);
                 }
             }, 300);
         }

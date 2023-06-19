@@ -19,7 +19,7 @@ public class SpinLogic {
 
     public int[] spinReels(int betAmount) throws Exception {
         if (player.getMoney() < betAmount || betAmount <= 0) {
-            throw new Exception("Invalid bet!");
+            return null;
         }
         player.loseMoney(betAmount);
 

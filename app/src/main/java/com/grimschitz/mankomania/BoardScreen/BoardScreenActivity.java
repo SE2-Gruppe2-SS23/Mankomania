@@ -1,32 +1,21 @@
 package com.grimschitz.mankomania.BoardScreen;
 
-import static com.grimschitz.mankomania.Game.getBoard;
 import static com.grimschitz.mankomania.Game.getInstance;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.grimschitz.mankomania.BoardLogic.Board;
-import com.grimschitz.mankomania.Game;
-import com.grimschitz.mankomania.GlobalAssets;
-import com.grimschitz.mankomania.R;
-import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
-import com.grimschitz.mankomania.client.Client;
-
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.grimschitz.mankomania.Game;
+import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.ToolsLogic.CasinoActivity;
+import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
 
 public class BoardScreenActivity extends AppCompatActivity {
 
@@ -86,6 +75,11 @@ public class BoardScreenActivity extends AppCompatActivity {
         // Get Each Player from Server assign ImageView
     }
 
+    public void startCasino(){
+        Intent intent = new Intent(BoardScreenActivity.this, CasinoActivity.class);
+        BoardScreenActivity.this.startActivity(intent);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -104,6 +98,7 @@ public class BoardScreenActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.player1);
 
         //TODO: IF Field 11, 18, 138 , 131 --> Minigame
+        if (playerfield==0 || playerfield==6 || playerfield==15)startCasino();
 
         //TODO: get Playerfield from active
         playerfield = playerfield+wurfel;
