@@ -43,7 +43,7 @@ import java.util.Objects;
 public class HorseRaceScreen extends AppCompatActivity implements PropertyChangeListener {
 
     public HorseRace raceInstance;
-
+    public int diceResult;
     public Button diceThrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,8 @@ public class HorseRaceScreen extends AppCompatActivity implements PropertyChange
         setPlayerIcon(Game.getInstance().getPlayers()[3], p4);
 
         diceThrow.setOnClickListener(view ->{
+//            Intent getDiceResult = new Intent(this, RollOneDiceActivity.class);
+//            startActivityForResult(getDiceResult,1);
             createActivity(RollDiceActivity.class);
             // TODO send roll to server
 //            try {
@@ -69,6 +71,16 @@ public class HorseRaceScreen extends AppCompatActivity implements PropertyChange
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                diceResult = data.getIntExtra("result", 0);
+
+            }
+        }
+    }
     public void toastAndSendToOthers(Player p) {
         try {
             Toast.makeText(this, "Player " + p.getName() + "wins" , Toast.LENGTH_LONG).show();
