@@ -111,14 +111,14 @@ public class RollOneDiceActivity extends AppCompatActivity implements SensorEven
             if (shake > 5 && shake < 7){
                 shakeDice();
                 int[] result = diceRoller.rollSix();
-                returnIntent.putExtra("result", result[0] + result[1]);
+                returnIntent.putExtra("result", result[0]);
                 setResult(RollDiceActivity.RESULT_OK, returnIntent);
                 rollDice(result[0]);
                 sensorManager.unregisterListener(this);
             } else if (shake >= 7) {
                 shakeDice();
                 int[] result = diceRoller.rollDice();
-                returnIntent.putExtra("result", result[0] + result[1]);
+                returnIntent.putExtra("result", result[0]);
                 setResult(RollDiceActivity.RESULT_OK, returnIntent);
                 rollDice(result[0]);
                 sensorManager.unregisterListener(this);

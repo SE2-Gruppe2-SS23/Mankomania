@@ -19,7 +19,7 @@ class SpinLogicTest {
     void setUp() {
         player = new Player();
         player.setMoney(100);
-        spinLogic = new SpinLogic(reelImages, player);
+        spinLogic = new SpinLogic(reelImages,  player);
     }
 
     @Test
