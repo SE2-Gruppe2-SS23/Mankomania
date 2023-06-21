@@ -58,19 +58,6 @@
         <activity android:name=".ToolsLogic.SlotsActivity"
             android:exported="false"/>
 
-        <activity android:name=".Screens.StartScreen"
-            android:exported="false"/>
-        <activity android:name=".Screens.LoadScreen"
-            android:exported="false"/>
-        <activity android:name=".Launchers.Launcher"
-            android:exported="true">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
         <activity
             android:name=".ToolsLogic.RouletteWheelView"
             android:exported="false" />
@@ -78,12 +65,6 @@
             android:name=".Boerse.BoerseAnimation"
             android:exported="false" />
 
-        <activity
-            android:name=".ToolsLogic.SlotsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ToolsLogic.RollDiceActivity"
-            android:exported="false" />
         <activity
             android:name=".BoardScreen.BoardScreenActivity"
             android:exported="true"
