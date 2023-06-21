@@ -33,6 +33,7 @@ public class PlaceBetScreen extends AppCompatActivity {
             }else{
                 setBet(Integer.parseInt(bet.getText().toString()));
                 createActivity(HorseRaceScreen.class);
+                finish();
             }
         });
     }
