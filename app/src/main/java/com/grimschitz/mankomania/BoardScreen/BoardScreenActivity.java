@@ -137,6 +137,7 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
                     break;
 
                 case 13:
+                    createActivity(PlaceBetScreen.class);
                     break;
 
                 case 18:
