@@ -71,13 +71,7 @@
             android:label="@string/title_activity_board_screen"
             android:theme="@style/Theme.Mankomania.NoActionBar"></activity>
 
-
-        <activity
-            android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
-            android:exported="true"
-            android:label="@string/title_activity_board_screen"
-            android:theme="@style/Theme.Mankomania.NoActionBar">
-        </activity>
+        
 
     </application>
 
