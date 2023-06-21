@@ -14,7 +14,9 @@ public enum GameState {
     MINIGAME_RACE,
     MINIGAME_EXCHANGE,
     MINIGAME_AUCTION,
-    INFO
+    INFO,
+
+    UPDATE_PLAYERS //sent to client to update player info
 }
 
 //split game states up if necessary. Message protocol is 'GameState#anyDataAsString'
