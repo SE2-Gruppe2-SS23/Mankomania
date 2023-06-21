@@ -44,7 +44,8 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
         setContentView(R.layout.activity_board_screen);
        text = (TextView) findViewById(R.id.textView3);
         playerfield=0;
-        player = new Player();
+        Game game = getInstance();
+        player = game.getClientPlayer();
 
 
         dummyMoney = 1000000;
