@@ -1,6 +1,9 @@
 package com.grimschitz.mankomania.client;
 
+import android.content.Intent;
 import android.util.Log;
+
+import androidx.core.content.res.TypedArrayUtils;
 
 import com.grimschitz.mankomania.FieldLogic.Field;
 import com.grimschitz.mankomania.Game;
@@ -13,7 +16,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Client extends Thread {
 
@@ -63,9 +69,10 @@ public class Client extends Thread {
         support.firePropertyChange(PropertyName.GAME_DATA.name(), oldGameData, gameData);
     }
 
-    public Client() {}
-    public static Client getInstance(){
-        if(instance == null){instance = new Client();}
+    public static Client getInstance() {
+        if (instance == null) {
+            instance = new Client();
+        }
         return instance;
     }
 
@@ -79,35 +86,76 @@ public class Client extends Thread {
                 String input = reader.readUTF();
                 Log.d("client", input);
                 GameState gameState = GameState.valueOf(input.substring(0, input.indexOf("#")));
+                String[] data;
                 switch (gameState) {
                     case HELLO:
+                        Game.getInstance().clientName = parseGameData(input).data()[0];
                         break;
                     case LOBBY_WAITING:
-                        Game.getInstance().currentState = GameState.LOBBY_WAITING;
+                        Game.getInstance().setCurrentState(GameState.LOBBY_WAITING);
                         setPlayerNames(parsePlayerNames(input));
                         break;
                     case LOBBY_READY:
                         setPlayerNames(parsePlayerNames(input));
-                        Game.getInstance().currentState = GameState.LOBBY_READY;
+                        Game.getInstance().setCurrentState(GameState.LOBBY_READY);
 //                        TODO: move to dice screen and determine player order
                         break;
                     case GAME_START:
                         Player[] players = new Player[4];
-                        String[] data = parseGameData(input).data();
+                        data = parseGameData(input).data();
                         for (int i = 0; i < data.length; i++) {
                             String s = data[i];
                             String[] playerData = s.split(":");
                             players[i] = new Player(new Field(Integer.parseInt(playerData[1]), ""), i, playerData[0]);
                         }
-                        Game.getInstance().players = players;
-                        Game.getInstance().currentState = GameState.GAME_START;
+                        Game.getInstance().setPlayers(players);
+                        Game.getInstance().setCurrentState(GameState.GAME_START);
                         break;
                     case GAME_MOVE:
                         setGameData(parseGameData(input));
                         break;
                     case GAME_WAIT:
+                        Game.getInstance().setCurrentState(gameState);
                         break;
                     case GAME_END:
+                        break;
+                    case MINIGAME_CASINO:
+                        break;
+                    case MINIGAME_RACE:
+
+                        Game.getInstance().setCurrentState(gameState);
+                        String[] split = input.substring(input.indexOf("#") + 1).split(",");
+                        if (split.length < 4) {
+                            break;
+                        }
+                        for (int i = 0; i < split.length; i++) {
+                            int[] rolls = Game.getInstance().getPlayers()[i].getRaceRoll();
+                            int index = IntStream.range(0, rolls.length).filter(j -> rolls[j] == 0).findFirst().orElse(-1);
+                            rolls[index] = Integer.parseInt(split[i]);
+                        }
+                        Game.getInstance().setCurrentState(GameState.GAME_MOVE);
+
+//                        TODO: reset raceRoll array
+
+                        break;
+                    case MINIGAME_EXCHANGE:
+                        break;
+                    case MINIGAME_AUCTION:
+                        break;
+                    case INFO:
+                        Game.getInstance().setRandomNumber(Integer.parseInt(parseGameData(input).data()[0]));
+                        break;
+                    case UPDATE_PLAYERS:
+                        data = parseGameData(input).data();
+                        for (String s : data) {
+                            String[] playerData = s.split(":");
+                            for (Player player : Game.getInstance().getPlayers()) {
+                                if (player.getName().equals(playerData[0])) {
+                                    player.setMoney(Integer.parseInt(playerData[1]));
+                                    player.setCurrentPosition(new Field(Integer.parseInt(playerData[2]), ""));
+                                }
+                            }
+                        }
                         break;
                     default:
                         setGameData(parseGameData(input));
@@ -133,4 +181,5 @@ public class Client extends Thread {
     private GameData parseGameData(String input) {
         return new GameData(GameState.valueOf(input.substring(0, input.indexOf("#"))), input.substring(input.indexOf("#") + 1).split("#"));
     }
+
 }

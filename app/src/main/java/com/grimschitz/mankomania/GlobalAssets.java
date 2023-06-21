@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GlobalAssets extends AppCompatActivity{
     public static Class nextScreen;
+    public static Integer bet;
 
+    public static Integer diceAmount;
+
+    public static Integer numberOfDices;
     public GlobalAssets(){}
 
 //    public void createActivity(AppCompatActivity nextActivity){

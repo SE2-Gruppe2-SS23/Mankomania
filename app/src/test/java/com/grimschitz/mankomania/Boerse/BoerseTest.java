@@ -38,7 +38,7 @@ public class BoerseTest {
     }
     @Test
     @Order(4)
-    public void testzaddShare() {
+    public void testaddShare() {
         int s = boerse.getShareSteel();
         int o = boerse.getShareOil();
         int p = boerse.getSharePower();
@@ -53,7 +53,7 @@ public class BoerseTest {
     }
     @Test
     @Order(5)
-    public void testzdelShare() {
+    public void testdelShare() {
         int s = boerse.getShareSteel();
         int o = boerse.getShareOil();
         int p = boerse.getSharePower();

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.grimschitz.mankomania.BoardScreen.BoardScreenActivity;
+import com.grimschitz.mankomania.Boerse.BoerseAnimation;
 import com.grimschitz.mankomania.client.Client;
 import com.grimschitz.mankomania.R;
 import com.grimschitz.mankomania.client.PropertyName;
