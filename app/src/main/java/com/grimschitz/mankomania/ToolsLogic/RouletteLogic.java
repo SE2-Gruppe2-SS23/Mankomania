@@ -1,5 +1,7 @@
 package com.grimschitz.mankomania.ToolsLogic;
 
+import com.grimschitz.mankomania.PlayerLogic.Player;
+
 import java.util.Random;
 
 public class RouletteLogic {
@@ -8,7 +10,10 @@ public class RouletteLogic {
     private String colorResult;
     private int resultNumber;
 
+    private Player player;
+
     public RouletteLogic() {
+        this.player = player;
         random = new Random();
     }
 

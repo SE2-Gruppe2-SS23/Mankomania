@@ -38,16 +38,15 @@ public class SlotsActivity extends AppCompatActivity {
 
         spinButton = findViewById(R.id.slotsButton);
         resultView = findViewById(R.id.resultTextView);
-        betAmountEditText = findViewById(R.id.betAmountEditText);
+
         moneyTextView = findViewById(R.id.moneyTextView);
 
         spinLogic = new SpinLogic(reelImages, player);
 
+        int betAmount = getIntent().getIntExtra("bet",0);
         spinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String betAmountStr = betAmountEditText.getText().toString();
-                int betAmount = Integer.parseInt(betAmountStr);
                 spin(betAmount);
             }
         });
@@ -62,6 +61,8 @@ public class SlotsActivity extends AppCompatActivity {
             }
 
             boolean win = spinLogic.checkWin(spinResults);
+
+            if (win)player.addMoney(betAmount*100);
 
             // Update player's money on screen
             moneyTextView.setText("Money: " + player.getMoney());

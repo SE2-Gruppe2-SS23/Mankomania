@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.R;
 
 import java.util.Random;
@@ -20,7 +21,9 @@ public class RouletteActivity extends AppCompatActivity {
     private Handler handler;
     private RouletteWheelView rouletteWheelView;
 
+    private Player player;
     private RouletteLogic rouletteLogic;
+    int betAmount = getIntent().getIntExtra("bet",0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class RouletteActivity extends AppCompatActivity {
         random = new Random();
         handler = new Handler();
         rouletteLogic = new RouletteLogic();
+
+
 
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +73,10 @@ public class RouletteActivity extends AppCompatActivity {
 
                 if (rouletteLogic.checkBet(bet)) {
                     resultTextView.setText("You won! The result is " + result + " (" + rouletteLogic.getColorResult() + ")");
+                    player.addMoney(betAmount*100);
                 } else {
                     resultTextView.setText("You lost! The result is " + result + " (" + rouletteLogic.getColorResult() + ")");
+                    player.loseMoney(betAmount);
                 }
                 new Handler().postDelayed(new Runnable() {
                     @Override

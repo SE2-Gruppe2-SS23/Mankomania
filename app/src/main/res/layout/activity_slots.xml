@@ -33,30 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <EditText
-        android:id="@+id/betAmountEditText"
-        style="@style/Widget.AppCompat.AutoCompleteTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/slotsButton"
-        android:layout_centerHorizontal="true"
-        android:hint="Enter Bet Amount"
-        android:inputType="number"
-        android:maxLength="6"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#000000"
-        android:textColorLink="#000000"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/slotsButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultTextView"
-        app:layout_constraintVertical_bias="0.571" />
-
     <TextView
         android:id="@+id/moneyTextView"
         android:layout_width="wrap_content"
