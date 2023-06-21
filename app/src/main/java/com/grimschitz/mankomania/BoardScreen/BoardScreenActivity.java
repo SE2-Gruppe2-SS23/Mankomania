@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.Screens.AuctionHouseScreen;
 import com.grimschitz.mankomania.Screens.PlaceBetScreen;
+import com.grimschitz.mankomania.ToolsLogic.SlotsActivity;
 import com.grimschitz.mankomania.client.GameState;
 import com.grimschitz.mankomania.client.PropertyName;
 
@@ -141,6 +142,7 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
                     break;
 
                 case 18:
+                    createActivity(SlotsActivity.class);
                     break;
 
             }
