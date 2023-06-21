@@ -4,11 +4,24 @@ import static com.grimschitz.mankomania.Game.getInstance;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.grimschitz.mankomania.Screens.AuctionHouseScreen;
+import com.grimschitz.mankomania.Screens.PlaceBetScreen;
+import com.grimschitz.mankomania.client.GameState;
+import com.grimschitz.mankomania.client.PropertyName;
+
+
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,13 +30,28 @@ import com.grimschitz.mankomania.R;
 import com.grimschitz.mankomania.ToolsLogic.CasinoActivity;
 import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
 
-public class BoardScreenActivity extends AppCompatActivity {
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import com.grimschitz.mankomania.Boerse.BoerseAnimation;
+import com.grimschitz.mankomania.Game;
+import com.grimschitz.mankomania.PlayerLogic.Player;
+import com.grimschitz.mankomania.R;
+
+
+
+public class BoardScreenActivity extends AppCompatActivity implements PropertyChangeListener {
 
     private SquareGridView gridView;
     private TextView text;
     private int validField[] = {21,22,24,26,27,38,48,68,78,88,98,108,118,138,148,147,145,144,143,141,131,111,101,91,71,61,41};// 27 Valide Felder des Grids in der richtigen Reihenfolge
 
+
     private int diceResult;
+
+    private static int dummyMoney;
+    private Player player;
+
     int playerfield;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +59,10 @@ public class BoardScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_screen);
        text = (TextView) findViewById(R.id.textView3);
         playerfield=0;
+        player = new Player();
+
+
+        dummyMoney = 1000000;
 
         gridView = findViewById(R.id.gridView);
         gridView.post(new Runnable() {
@@ -42,10 +74,19 @@ public class BoardScreenActivity extends AppCompatActivity {
                   }
 
                   startingPos();
+                  //updatePlayers(); //As Soon as server is running replace startingPos() with updatePlayers
               }
         });
 
     }
+
+    public BoardScreenActivity(){
+        dummyMoney = 1000000;
+    }
+
+    public BoardScreenActivity(int i){
+    }
+
     public void startingPos(){
         Log.d("Starting:", "Starting pos");
         int xy[] = gridView.getCellCoordinates(10);
@@ -72,8 +113,16 @@ public class BoardScreenActivity extends AppCompatActivity {
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1];
         image.requestLayout();
 
+        TextView money = (TextView) findViewById(R.id.moneyAmount);
+        //Game game = getInstance();
+        // money.setText(game.players[1].getMoney());
+
+
+        money.setText(String.valueOf(dummyMoney));
+
         // Get Each Player from Server assign ImageView
     }
+
 
     public void startCasino(){
         Intent intent = new Intent(BoardScreenActivity.this, CasinoActivity.class);
@@ -91,14 +140,12 @@ public class BoardScreenActivity extends AppCompatActivity {
         }
     }
 
-    public void wurfeln(View view) {
+    public void wurfeln(View view) throws InterruptedException {
         Intent myIntent = new Intent(BoardScreenActivity.this, RollDiceActivity.class);
         startActivityForResult(myIntent, 1);
         int wurfel = diceResult;
         ImageView image = findViewById(R.id.player1);
 
-        //TODO: IF Field 11, 18, 138 , 131 --> Minigame
-        
 
         //TODO: get Playerfield from active
         playerfield = playerfield+wurfel;
@@ -110,44 +157,121 @@ public class BoardScreenActivity extends AppCompatActivity {
         image.requestLayout();
 
         Log.d("Move to Field:" + validField[playerfield],"Würfel"+ wurfel + "x" + xy[0] + " and y" + xy[1] + ", Auf Feld " + playerfield);
+
+        if(playerfield == 0 || playerfield == 5 || playerfield == 13 || playerfield == 18){
+
+            switch(playerfield){
+
+                case 0:
+                    runBoerseAnimation();
+                    break;
+                    //dummyPlayer.getPlayerBoerse().boerseEvent(this, new BoerseAnimation());
+                case 5:
+                    createActivity(AuctionHouseScreen.class);
+                    break;
+
+                case 13:
+                    startCasino();
+                    break;
+
+                case 18:
+                    break;
+
+            }
         }
-    public void updatePlayers(View view) {
+        if(playerfield != 11 && playerfield != 18 && playerfield != 138 && playerfield != 131){
+            moneyEffect();
+        }
+
+
+        }
+
+    private void moneyEffect() {
+        Game game = getInstance();
+        int rand = (int)(Math.random() * 3 + 1);
+
+        TextView text = (TextView) findViewById(R.id.broadcast);
+
+        if(rand == 1 || rand == 3) {
+            player.setMoney(player.getMoney()-10000);
+            //game.players[1].setMoney(game.players[1].getMoney()-10000);
+            text.setText("Du hast 10.000 Coins\nverloren!");
+        }
+        if(rand == 2){
+            player.setMoney(player.getMoney()+10000);
+            //game.players[1].setMoney(game.players[1].getMoney()+10000);
+            text.setText("Du hast 10.000 Coins\ngewonnen!");
+
+        }
+
+
+
+
+        TextView money = (TextView) findViewById(R.id.moneyAmount);
+        money.setText(String.valueOf(player.getMoney()));
+        //money.setText(game.players[1].getMoney());
+
+    }
+
+    public void runBoerseAnimation(){
+        Intent intent = new Intent(BoardScreenActivity.this, BoerseAnimation.class);
+        startActivity(intent);
+    }
+
+    public void updatePlayers() {
 
         Game game = getInstance();
 
 // Valide Felder des Grids in der richtigen Reihenfolge
 
-        int xy[] = gridView.getCellCoordinates(validField[game.players[0].getCurPosition()]);
+        int xy[] = gridView.getCellCoordinates(validField[game.getPlayers()[0].getCurPosition()]);
 
         ImageView image = findViewById(R.id.player1);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[1].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[1].getCurPosition()]);
         image = findViewById(R.id.player2);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player3);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
-        xy = gridView.getCellCoordinates(validField[game.players[3].getCurPosition()]);
+        xy = gridView.getCellCoordinates(validField[game.getPlayers()[3].getCurPosition()]);
         image = findViewById(R.id.player4);
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).leftMargin = xy[0]; //+ playerindex* e.g. 3 so players are not completely overlaping
         ((ViewGroup.MarginLayoutParams)image.getLayoutParams()).topMargin = xy[1]; //+ playerindex* e.g. 3 so players are not completely overlaping
         image.requestLayout();
 
+        TextView money = (TextView) findViewById(R.id.moneyAmount);
+        money.setText(game.getPlayers()[1].getMoney());
 
     }
+
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals(PropertyName.GAME_STATE.name())){
+            if(evt.getNewValue().equals(GameState.MINIGAME_RACE)){
+                createActivity(PlaceBetScreen.class);
+            }
+        }
+    }
+
+    public void createActivity(Class nextActivity){
+        Intent nextScreen = new Intent(this,nextActivity);
+        this.startActivity(nextScreen);
+    }
+
     //Todo: Update Other Player Position
         //Get Other "Players"
             //move other avatars to position
-
 
 }
 

@@ -1,10 +1,12 @@
 package com.grimschitz.mankomania.Boerse;
 
+import com.grimschitz.mankomania.BoardLogic.Board;
+import com.grimschitz.mankomania.BoardScreen.BoardScreenActivity;
 import com.grimschitz.mankomania.PlayerLogic.Player;
 
 public class Boerse
 {
-    private Player player;
+    private static Player player;
     private int shareSteel;
     private int shareOil;
     private int sharePower;
@@ -17,7 +19,6 @@ public class Boerse
         this.shareOil = 2;
         this.sharePower = 2;
         this.shareSteel = 2;
-
     }
 
 
@@ -51,24 +52,65 @@ public class Boerse
         return sharePower;
     }
 
-    public void boerseEvent(){
+    public void boerseEvent(BoardScreenActivity bsa, BoerseAnimation bA){
+
+
+
         int shareType = (int)(Math.random() * 3 + 1);
         int raiseFall = (int)(Math.random() * 2 + 1);
         //TODO:Animation
-        switch (shareType){
+         switch (shareType){
             case 1:
                 if(raiseFall==1) player.addMoney(shareSteel*10000);
                 else player.loseMoney(shareOil*10000);
                 break;
             case 2:
                 if(raiseFall==1) player.addMoney(shareOil*10000);
-            else player.loseMoney(shareOil*10000);
+                else player.loseMoney(shareOil*10000);
                 break;
             case 3:
                 if(raiseFall==1) player.addMoney(sharePower*10000);
                 else player.loseMoney(shareOil*10000);
                 break;
         }
+
+
+  /*      switch (shareType){
+            case 1:
+                if(raiseFall==1) player.addMoney(shareSteel*10000);
+                else player.loseMoney(shareOil*10000);
+                break;
+            case 2:
+                if(raiseFall==1) player.addMoney(shareOil*10000);
+                else player.loseMoney(shareOil*10000);
+                break;
+            case 3:
+                if(raiseFall==1) player.addMoney(sharePower*10000);
+                else player.loseMoney(shareOil*10000);
+                break;
+        }
+*/
+        bsa.runBoerseAnimation();
+
+        bA.rotatePointer(shareType-1, raiseFall);
+
+
+
+        /*  Game game = getInstance();
+            switch (shareType){
+            case 1:
+                if(raiseFall==1) game.getPlayers()[1].addMoney(game.getPlayers()[1].getPlayerBoerse().getShareSteel()*10000);
+                else game.getPlayers()[1].removeMoney(game.getPlayers()[1].getPlayerBoerse().getShareSteel()*10000);
+                break;
+            case 2:
+                if(raiseFall==1) game.getPlayers()[1].addMoney(game.getPlayers()[1].getPlayerBoerse().getSharePower()*10000);
+                else game.getPlayers()[1].removeMoney(game.getPlayers()[1].getPlayerBoerse().getSharePower()*10000);
+                break;
+            case 3:
+                if(raiseFall==1) game.getPlayers()[1].addMoney(game.getPlayers()[1].getPlayerBoerse().getShareOil()*10000);
+                else game.getPlayers()[1].removeMoney(game.getPlayers()[1].getPlayerBoerse().getShareOil()*10000);
+                break;
+        }*/
 
     }
     private void updateBoerse(){

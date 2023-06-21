@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public enum Game {
@@ -57,21 +58,35 @@ public enum Game {
         for (Player player : players) {
             if (player.money() == 0) {
                 sendToAll(GameState.GAME_END, player.name());
-//                TODO: can multiple players win?
+//                TODO: check on clients?
                 return;
             }
         }
     }
 
+    private final Random random = new Random();
+
     private void endTurn() {
         currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
+        sendToAll(GameState.INFO, String.valueOf(random.nextInt()));
+        sendToAll(GameState.UPDATE_PLAYERS, Arrays.stream(players).map(player ->
+                player.name() + ":" + player.position() + ":" + player.money()
+        ).collect(Collectors.joining(",")));
+        send(currentPlayer, GameState.GAME_MOVE);
     }
 
     public void disconnect() {
+//        TODO: https://github.com/SE2-Gruppe2-SS23/Mankomania/issues/38
+        throw new UnsupportedOperationException();
     }
 
     public void reconnect() {
+//        TODO: https://github.com/SE2-Gruppe2-SS23/Mankomania/issues/38
+        throw new UnsupportedOperationException();
     }
+
+    private boolean horseRaceStarted = false;
+    private int horseRaceRound = 0;
 
     public Response move(Player player, String input) {
         var data = input.split("#");
@@ -83,7 +98,8 @@ public enum Game {
             determineTurns();
             return new Response(GameState.GAME_WAIT);
         }
-        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
+//        TODO: check this. add only to GAME_MOVE ?
+//        if (!player.equals(currentPlayer)) return new Response(GameState.GAME_WAIT);
 
 
         switch (state) {
@@ -97,16 +113,38 @@ public enum Game {
             case MINIGAME_CASINO:
                 break;
             case MINIGAME_RACE:
+                if (!horseRaceStarted) {
+                    horseRaceStarted = true;
+                    sendToAll(GameState.MINIGAME_RACE);
+                    return null;
+                }
+                player.raceRoll[horseRaceRound++] = Integer.parseInt(data[1]);
+                for (Player p : players) {
+                    if (p.raceRoll[horseRaceRound] == 0) return new Response(GameState.GAME_WAIT);
+                    sendToAll(GameState.MINIGAME_RACE, Arrays.stream(players).map(player1 -> String.valueOf(player1.raceRoll[horseRaceRound])).collect(Collectors.joining(",")));
+                }
                 break;
             case MINIGAME_EXCHANGE:
                 break;
             case MINIGAME_AUCTION:
+                player.setMoney(Integer.parseInt(data[1]));
+                endTurn();
+                break;
+            case INFO:
+                if (horseRaceStarted) {
+                    player.setMoney(Integer.parseInt(data[1]));
+                    horseRaceStarted = false;
+                    horseRaceRound = 0;
+                    for (Player p : players) {
+                        p.raceRoll = new int[8];
+                    }
+                    endTurn();
+                }
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + state);
         }
 
-        endTurn();
         return null;
     }
 
@@ -115,8 +153,16 @@ public enum Game {
             try {
                 new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         });
+    }
+
+    private void send(Player player, GameState gameState, String... data) {
+        try {
+            new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
