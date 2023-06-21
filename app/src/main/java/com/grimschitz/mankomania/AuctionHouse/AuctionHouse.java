@@ -29,6 +29,11 @@ public class AuctionHouse {
                 new AuctionObject("House", 2000),
                 new AuctionObject("Boat", 3000)
         };
+        try {
+            Client.getInstance().send(GameState.MINIGAME_AUCTION);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int buyObject(AuctionObject auctionObject) {
