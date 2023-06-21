@@ -86,6 +86,7 @@ public class Client extends Thread {
                 String input = reader.readUTF();
                 Log.d("client", input);
                 GameState gameState = GameState.valueOf(input.substring(0, input.indexOf("#")));
+                String[] data;
                 switch (gameState) {
                     case HELLO:
                         Game.getInstance().clientName = parseGameData(input).data()[0];
@@ -101,7 +102,7 @@ public class Client extends Thread {
                         break;
                     case GAME_START:
                         Player[] players = new Player[4];
-                        String[] data = parseGameData(input).data();
+                        data = parseGameData(input).data();
                         for (int i = 0; i < data.length; i++) {
                             String s = data[i];
                             String[] playerData = s.split(":");
@@ -143,6 +144,18 @@ public class Client extends Thread {
                         break;
                     case INFO:
                         Game.getInstance().setRandomNumber(Integer.parseInt(parseGameData(input).data()[0]));
+                        break;
+                    case UPDATE_PLAYERS:
+                        data = parseGameData(input).data();
+                        for (String s : data) {
+                            String[] playerData = s.split(":");
+                            for (Player player : Game.getInstance().getPlayers()) {
+                                if (player.getName().equals(playerData[0])) {
+                                    player.setMoney(Integer.parseInt(playerData[1]));
+                                    player.setCurrentPosition(new Field(Integer.parseInt(playerData[2]), ""));
+                                }
+                            }
+                        }
                         break;
                     default:
                         setGameData(parseGameData(input));

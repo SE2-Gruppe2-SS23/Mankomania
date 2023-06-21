@@ -69,7 +69,10 @@ public enum Game {
     private void endTurn() {
         currentPlayer = players[(Arrays.asList(players).indexOf(currentPlayer) + 1) % players.length];
         sendToAll(GameState.INFO, String.valueOf(random.nextInt()));
-//        TODO: update all clients with money & new active player & player position
+        sendToAll(GameState.UPDATE_PLAYERS, Arrays.stream(players).map(player ->
+                player.name() + ":" + player.position() + ":" + player.money()
+        ).collect(Collectors.joining(",")));
+        send(currentPlayer, GameState.GAME_MOVE);
     }
 
     public void disconnect() {
@@ -124,6 +127,8 @@ public enum Game {
             case MINIGAME_EXCHANGE:
                 break;
             case MINIGAME_AUCTION:
+                player.setMoney(Integer.parseInt(data[1]));
+                endTurn();
                 break;
             case INFO:
                 if (horseRaceStarted) {
@@ -151,5 +156,13 @@ public enum Game {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void send(Player player, GameState gameState, String... data) {
+        try {
+            new DataOutputStream(player.socket().getOutputStream()).writeUTF(gameState + "#" + String.join("#", data));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
