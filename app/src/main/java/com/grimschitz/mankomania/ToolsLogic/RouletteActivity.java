@@ -20,6 +20,8 @@ public class RouletteActivity extends AppCompatActivity {
     private Handler handler;
     private RouletteWheelView rouletteWheelView;
 
+    private RouletteLogic rouletteLogic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class RouletteActivity extends AppCompatActivity {
 
         random = new Random();
         handler = new Handler();
+        rouletteLogic = new RouletteLogic();
 
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,23 +55,21 @@ public class RouletteActivity extends AppCompatActivity {
 
     private void spin(String bet) {
         int spinDuration = 3000;
-        int result = random.nextInt(37); // 0 to 36, with 0 as a special case
-        String color = (result == 0) ? "green" : (result % 2 == 0) ? "red" : "black";
 
         resultTextView.setText("Spinning...");
+        rouletteLogic.spin();
+        int result = rouletteLogic.getResultNumber();
         rouletteWheelView.spin(result);
-
-
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 rouletteWheelView.stopSpin();
 
-                if (color.equals(bet)) {
-                    resultTextView.setText("You won! The result is " + result + " (" + color + ")");
+                if (rouletteLogic.checkBet(bet)) {
+                    resultTextView.setText("You won! The result is " + result + " (" + rouletteLogic.getColorResult() + ")");
                 } else {
-                    resultTextView.setText("You lost! The result is " + result + " (" + color + ")");
+                    resultTextView.setText("You lost! The result is " + result + " (" + rouletteLogic.getColorResult() + ")");
                 }
                 new Handler().postDelayed(new Runnable() {
                     @Override
