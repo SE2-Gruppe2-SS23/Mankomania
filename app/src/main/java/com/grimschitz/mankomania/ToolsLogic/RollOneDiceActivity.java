@@ -21,10 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.R;
 
-public class RollDiceActivity extends AppCompatActivity implements SensorEventListener {
+public class RollOneDiceActivity extends AppCompatActivity implements SensorEventListener {
 
     private Button rollTestButton;
-    private ImageView diceOne,diceTwo;
+    private ImageView diceOne;
 
     private TextView resultText;
 
@@ -45,7 +45,6 @@ public class RollDiceActivity extends AppCompatActivity implements SensorEventLi
         setContentView(R.layout.activity_roll_dice);
 
         diceOne = findViewById(R.id.diceOneImage);
-        diceTwo = findViewById(R.id.diceTwoImage);
         resultText = findViewById(R.id.resultTextView);
 
         rollTestButton = findViewById(R.id.rollTestButton);
@@ -56,7 +55,7 @@ public class RollDiceActivity extends AppCompatActivity implements SensorEventLi
                 int[] result = diceRoller.rollDice();
                 returnIntent.putExtra("result", result[0] + result[1]);
                 setResult(RollDiceActivity.RESULT_OK, returnIntent);
-                rollDice(result[0], result[1]);
+                rollDice(result[0]);
             }
         });
 
@@ -74,26 +73,21 @@ public class RollDiceActivity extends AppCompatActivity implements SensorEventLi
         mediaPlayer.start();
 
         diceOne.setImageResource(R.drawable.shake);
-        diceTwo.setImageResource(R.drawable.shake);
 
         AnimationDrawable diceOneRollAnimation = (AnimationDrawable) diceOne.getDrawable();
-        AnimationDrawable diceTwoRollAnimation = (AnimationDrawable) diceTwo.getDrawable();
         Animation rattleAnimation = AnimationUtils.loadAnimation(this,R.anim.rattle);
 
         diceOne.startAnimation(rattleAnimation);
-        diceTwo.startAnimation(rattleAnimation);
 
         diceOneRollAnimation.start();
-        diceTwoRollAnimation.start();
     }
 
-    private void rollDice(int rollOne, int rollTwo) {
+    private void rollDice(int rollOne) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                int result = rollOne + rollTwo;
+                int result = rollOne;
                 diceOne.setImageResource(diceImages[rollOne-1]);
-                diceTwo.setImageResource(diceImages[rollTwo-1]);
                 resultText.setText("You rolled "+result+" !");
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -117,16 +111,16 @@ public class RollDiceActivity extends AppCompatActivity implements SensorEventLi
             if (shake > 5 && shake < 7){
                 shakeDice();
                 int[] result = diceRoller.rollSix();
-                returnIntent.putExtra("result", result[0] + result[1]);
+                returnIntent.putExtra("result", result[0]);
                 setResult(RollDiceActivity.RESULT_OK, returnIntent);
-                rollDice(result[0], result[1]);
+                rollDice(result[0]);
                 sensorManager.unregisterListener(this);
             } else if (shake >= 7) {
                 shakeDice();
                 int[] result = diceRoller.rollDice();
-                returnIntent.putExtra("result", result[0] + result[1]);
+                returnIntent.putExtra("result", result[0]);
                 setResult(RollDiceActivity.RESULT_OK, returnIntent);
-                rollDice(result[0], result[1]);
+                rollDice(result[0]);
                 sensorManager.unregisterListener(this);
             }
         }

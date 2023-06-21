@@ -6,6 +6,7 @@
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -18,9 +19,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mankomania"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ToolsLogic.CasinoActivity"
+            android:exported="false"
+            android:label="@string/title_activity_casino"
+            android:theme="@style/Theme.Mankomania" />
+        <activity
+            android:name=".Screens.LoadScreen"
+            android:exported="false" />
+
+
         <activity
             android:name=".Screens.HorseRace.HorseRaceScreen"
             android:exported="false" />
+
+        <activity
+            android:name=".Screens.StartScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Launchers.Launcher"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ToolsLogic.RollDiceActivity"
             android:exported="false"/>
         <activity android:name=".Screens.PlaceBetScreen"
@@ -32,19 +58,6 @@
         <activity android:name=".ToolsLogic.SlotsActivity"
             android:exported="false"/>
 
-        <activity android:name=".Screens.StartScreen"
-            android:exported="false"/>
-        <activity android:name=".Screens.LoadScreen"
-            android:exported="false"/>
-        <activity android:name=".Launchers.Launcher"
-            android:exported="true">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
         <activity
             android:name=".ToolsLogic.RouletteWheelView"
             android:exported="false" />
@@ -53,11 +66,13 @@
             android:exported="false" />
 
         <activity
-            android:name="com.grimschitz.mankomania.BoardScreen.BoardScreenActivity"
+            android:name=".BoardScreen.BoardScreenActivity"
             android:exported="true"
             android:label="@string/title_activity_board_screen"
-            android:theme="@style/Theme.Mankomania.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.Mankomania.NoActionBar"></activity>
+
+        
+
     </application>
 
 </manifest>

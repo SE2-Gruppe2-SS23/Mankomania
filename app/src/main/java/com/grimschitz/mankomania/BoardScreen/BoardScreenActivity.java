@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.grimschitz.mankomania.Screens.AuctionHouseScreen;
@@ -15,11 +16,20 @@ import com.grimschitz.mankomania.client.GameState;
 import com.grimschitz.mankomania.client.PropertyName;
 
 
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.grimschitz.mankomania.Game;
+import com.grimschitz.mankomania.R;
+import com.grimschitz.mankomania.ToolsLogic.CasinoActivity;
+import com.grimschitz.mankomania.ToolsLogic.RollDiceActivity;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -30,14 +40,19 @@ import com.grimschitz.mankomania.PlayerLogic.Player;
 import com.grimschitz.mankomania.R;
 
 
+
 public class BoardScreenActivity extends AppCompatActivity implements PropertyChangeListener {
 
     private SquareGridView gridView;
     private TextView text;
     private int validField[] = {21,22,24,26,27,38,48,68,78,88,98,108,118,138,148,147,145,144,143,141,131,111,101,91,71,61,41};// 27 Valide Felder des Grids in der richtigen Reihenfolge
 
+
+    private int diceResult;
+
     private static int dummyMoney;
     private Player player;
+
     int playerfield;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,8 +124,28 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
 
         // Get Each Player from Server assign ImageView
     }
+
+
+    public void startCasino(){
+        Intent intent = new Intent(BoardScreenActivity.this, CasinoActivity.class);
+        BoardScreenActivity.this.startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+              diceResult = data.getIntExtra("result", 0);
+
+            }
+        }
+    }
+
     public void wurfeln(View view) throws InterruptedException {
-        int wurfel = (int)(Math.random() * 6 + 1);
+        Intent myIntent = new Intent(BoardScreenActivity.this, RollDiceActivity.class);
+        startActivityForResult(myIntent, 1);
+        int wurfel = diceResult;
         ImageView image = findViewById(R.id.player1);
 
 
@@ -138,11 +173,12 @@ public class BoardScreenActivity extends AppCompatActivity implements PropertyCh
                     break;
 
                 case 13:
+
                     createActivity(PlaceBetScreen.class);
                     break;
 
                 case 18:
-                    createActivity(SlotsActivity.class);
+                    startCasino();
                     break;
 
             }
