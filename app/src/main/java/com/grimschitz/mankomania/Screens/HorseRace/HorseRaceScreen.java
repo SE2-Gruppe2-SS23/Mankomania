@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 
 public class HorseRaceScreen extends AppCompatActivity implements PropertyChangeListener {
 
@@ -59,13 +60,14 @@ public class HorseRaceScreen extends AppCompatActivity implements PropertyChange
         diceThrow.setOnClickListener(view ->{
 //            Intent getDiceResult = new Intent(this, RollOneDiceActivity.class);
 //            startActivityForResult(getDiceResult,1);
-            createActivity(RollDiceActivity.class);
+            //createActivity(RollDiceActivity.class);
+            Random rand = new Random();
             // TODO send roll to server
-//            try {
-//                Client.getInstance().send(GameState.MINIGAME_RACE, String.valueOf(GlobalAssets.diceAmount));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+               try {
+                Client.getInstance().send(GameState.MINIGAME_RACE, String.valueOf(rand.nextInt(6)));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
 
