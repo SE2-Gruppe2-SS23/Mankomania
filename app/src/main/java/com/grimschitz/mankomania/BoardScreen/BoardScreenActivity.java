@@ -98,7 +98,7 @@ public class BoardScreenActivity extends AppCompatActivity {
         ImageView image = findViewById(R.id.player1);
 
         //TODO: IF Field 11, 18, 138 , 131 --> Minigame
-        if (playerfield==0 || playerfield==6 || playerfield==15)startCasino();
+        
 
         //TODO: get Playerfield from active
         playerfield = playerfield+wurfel;
